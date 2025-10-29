@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>统计分布模拟分析工具</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="dashscope_integration.js"></script>
     <script src="i18n.js"></script>
+    <script src="dashscope_integration.js"></script>
     <style>
         :root {
             --primary-color: #4a6fa5;
@@ -342,24 +342,24 @@
         </div>
         
         <div id="hypothesis" class="tab-content hidden">
-            <h2>假设检验</h2>
+            <h2 data-i18n="tab.hypothesis">假设检验</h2>
             
             <div class="card">
-                <h3>检验设置</h3>
+                <h3 data-i18n="test.settings">检验设置</h3>
                 
                 <div class="form-group">
-                    <label for="test-type">检验类型</label>
+                    <label for="test-type" data-i18n="stats.testType">检验类型</label>
                     <select id="test-type">
-                        <option value="z-test">单样本Z检验</option>
-                        <option value="t-test">单样本T检验</option>
-                        <option value="two-sample-t">双样本T检验</option>
-                        <option value="anova">单因素方差分析</option>
+                        <option value="z-test" data-i18n="z.test">单样本Z检验</option>
+                        <option value="t-test" data-i18n="t.test">单样本T检验</option>
+                        <option value="two-sample-t" data-i18n="test.twoSample">双样本T检验</option>
+                        <option value="anova" data-i18n="test.anova">单因素方差分析</option>
                     </select>
                 </div>
                 
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="significance-level">显著性水平 (α)</label>
+                        <label for="significance-level" data-i18n="hypothesis.significanceLevel">显著性水平 (α)</label>
                         <select id="significance-level">
                             <option value="0.01">0.01</option>
                             <option value="0.05" selected>0.05</option>
@@ -367,65 +367,65 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="test-direction">检验方向</label>
+                        <label for="test-direction" data-i18n="test.direction">检验方向</label>
                         <select id="test-direction">
-                            <option value="two-tailed" selected>双侧检验</option>
-                            <option value="left-tailed">左侧检验</option>
-                            <option value="right-tailed">右侧检验</option>
+                            <option value="two-tailed" selected data-i18n="test.twoTailed">双侧检验</option>
+                            <option value="left-tailed" data-i18n="test.leftTailed">左侧检验</option>
+                            <option value="right-tailed" data-i18n="test.rightTailed">右侧检验</option>
                         </select>
                     </div>
                 </div>
                 
                 <div id="one-sample-params">
-                    <h4>单样本检验参数</h4>
+                    <h4 data-i18n="test.oneSampleParams">单样本检验参数</h4>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="population-mean">假设总体均值 (μ₀)</label>
+                            <label for="population-mean" data-i18n="confidence.hypothesizedMean">假设总体均值 (μ₀)</label>
                             <input type="number" id="population-mean" value="0" step="0.1" required>
                         </div>
                         <div class="form-group">
-                            <label for="population-std">总体标准差 (σ) <span class="help-text">(Z检验需要)</span></label>
+                            <label for="population-std" data-i18n="stats.population.std">总体标准差 (σ) <span class="help-text" data-i18n="test.neededForZTest">(Z检验需要)</span></label>
                             <input type="number" id="population-std" value="1" step="0.1" min="0.01">
                         </div>
                     </div>
                 </div>
                 
                 <div id="two-sample-params" class="hidden">
-                    <h4>双样本检验参数</h4>
+                    <h4 data-i18n="test.twoSampleParams">双样本检验参数</h4>
                     <div class="form-group">
-                        <label for="sample-method">样本选择方式</label>
+                        <label for="sample-method" data-i18n="test.sampleMethod">样本选择方式</label>
                         <select id="sample-method">
-                            <option value="use-generated">使用已生成的数据</option>
-                            <option value="manual-entry">手动输入</option>
+                            <option value="use-generated" data-i18n="test.useGeneratedData">使用已生成的数据</option>
+                            <option value="manual-entry" data-i18n="test.manualEntry">手动输入</option>
                         </select>
                     </div>
                     <div id="manual-sample-input" class="hidden">
                         <div class="form-group">
-                            <label for="sample1-data">样本1数据 (逗号分隔)</label>
-                            <textarea id="sample1-data" rows="4" placeholder="例如: 1,2,3,4,5"></textarea>
+                            <label for="sample1-data" data-i18n="test.sample1Data">样本1数据 (逗号分隔)</label>
+                            <textarea id="sample1-data" rows="4" placeholder="例如: 1,2,3,4,5" data-i18n-placeholder="test.sampleDataPlaceholder"></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="sample2-data">样本2数据 (逗号分隔)</label>
-                            <textarea id="sample2-data" rows="4" placeholder="例如: 2,3,4,5,6"></textarea>
+                            <label for="sample2-data" data-i18n="test.sample2Data">样本2数据 (逗号分隔)</label>
+                            <textarea id="sample2-data" rows="4" placeholder="例如: 2,3,4,5,6" data-i18n-placeholder="test.sampleDataPlaceholder"></textarea>
                         </div>
                     </div>
                 </div>
                 
                 <div id="anova-params" class="hidden">
-                    <h4>方差分析参数</h4>
+                    <h4 data-i18n="test.anovaParams">方差分析参数</h4>
                     <div class="form-group">
-                        <p>方差分析需要至少两组数据，请使用手动输入方式。</p>
+                        <p data-i18n="test.anovaRequiresData">方差分析需要至少两组数据，请使用手动输入方式。</p>
                     </div>
                 </div>
                 
                 <div class="button-group">
-                    <button id="calculate-test" class="btn btn-primary">计算假设检验</button>
-                    <button id="clear-test-results" class="btn btn-secondary">清除结果</button>
+                    <button id="calculate-test" class="btn btn-primary" data-i18n="button.calculate.test">计算假设检验</button>
+                    <button id="clear-test-results" class="btn btn-secondary" data-i18n="button.clearResults">清除结果</button>
                 </div>
             </div>
             
             <div id="test-results" class="hidden">
-                <h3>检验结果</h3>
+                <h3 data-i18n="test.results">检验结果</h3>
                 <div class="stats-container">
                     <div id="test-summary" class="stats-grid"></div>
                 </div>
@@ -446,7 +446,7 @@
                     <option value="binomial" data-i18n="distribution.binomial">二项分布</option>
                     <option value="poisson" data-i18n="distribution.poisson">泊松分布</option>
                     <option value="uniform" data-i18n="distribution.uniform">均匀分布</option>
-                    <option value="exponential">指数分布</option>
+                    <option value="exponential" data-i18n="distribution.exponential">指数分布</option>
                 </select>
             </div>
             
@@ -677,71 +677,71 @@
         </div>
         
         <div id="analysis" class="tab-content hidden">
-            <h2>数据分析</h2>
+            <h2 data-i18n="dataAnalysis.title">数据分析</h2>
             
             <div class="form-group">
-                <label>数据输入方式</label>
+                <label data-i18n="dataAnalysis.inputMethod">数据输入方式</label>
                 <div>
-                    <label><input type="radio" name="data-input-method" id="data-input-method" value="distribution" checked> 使用分布生成数据</label>
-                    <label><input type="radio" name="data-input-method" id="data-input-method" value="file" style="margin-left: 20px;"> 上传CSV文件</label>
-                    <label><input type="radio" name="data-input-method" id="data-input-method" value="ai" style="margin-left: 20px;"> AI生成数据</label>
+                    <label><input type="radio" name="data-input-method" id="data-input-method" value="distribution" checked> <span data-i18n="dataAnalysis.useDistribution">使用分布生成数据</span></label>
+                    <label><input type="radio" name="data-input-method" id="data-input-method" value="file" style="margin-left: 20px;"> <span data-i18n="dataAnalysis.uploadFile">上传CSV文件</span></label>
+                    <label><input type="radio" name="data-input-method" id="data-input-method" value="ai" style="margin-left: 20px;"> <span data-i18n="dataAnalysis.aiGenerate">AI生成数据</span></label>
                 </div>
             </div>
             
             <div id="file-data-input" class="form-group hidden">
-                <label for="file-upload">上传CSV文件</label>
+                <label for="file-upload" data-i18n="dataAnalysis.uploadCSV">上传CSV文件</label>
                 <input type="file" id="file-upload" accept=".csv">
-                <p class="help-text" style="font-size: 12px; color: var(--text-secondary); margin-top: 5px;">支持CSV格式，每行一个数据或逗号分隔的数据。</p>
+                <p class="help-text" style="font-size: 12px; color: var(--text-secondary); margin-top: 5px;" data-i18n="dataAnalysis.csvHelp">支持CSV格式，每行一个数据或逗号分隔的数据。</p>
             </div>
             
             <div id="ai-data-input" class="form-group hidden">
-                <label for="ai-data-description">数据描述</label>
-                <textarea id="ai-data-description" rows="3" placeholder="请描述您想要的数据特征，例如：生成1000个模拟股票价格数据，呈现一定的趋势和波动性"></textarea>
+                <label for="ai-data-description" data-i18n="dataAnalysis.aiDescription">数据描述</label>
+                <textarea id="ai-data-description" rows="3" data-i18n-placeholder="dataAnalysis.aiDescriptionPlaceholder" placeholder="请描述您想要的数据特征，例如：生成1000个模拟股票价格数据，呈现一定的趋势和波动性"></textarea>
                 <div class="form-row">
                     <div class="form-group" style="flex: 1; margin-right: 10px;">
-                        <label for="ai-data-count">数据点数量</label>
+                        <label for="ai-data-count" data-i18n="dataAnalysis.dataPointCount">数据点数量</label>
                         <input type="number" id="ai-data-count" min="100" max="10000" value="1000">
                     </div>
                     <div class="form-group" style="flex: 1;">
-                        <label for="ai-data-seed">随机种子（可选）</label>
+                        <label for="ai-data-seed" data-i18n="dataAnalysis.randomSeed">随机种子（可选）</label>
                         <input type="number" id="ai-data-seed" min="0" max="999999">
                     </div>
                 </div>
-                <button id="generate-ai-data" class="btn btn-primary">生成AI数据</button>
-                <p class="help-text" style="font-size: 12px; color: var(--text-secondary); margin-top: 5px;">基于您的描述，系统将生成符合特征的模拟数据。</p>
+                <button id="generate-ai-data" class="btn btn-primary" data-i18n="dataAnalysis.generateAIData">生成AI数据</button>
+                <p class="help-text" style="font-size: 12px; color: var(--text-secondary); margin-top: 5px;" data-i18n="dataAnalysis.aiDataHelp">基于您的描述，系统将生成符合特征的模拟数据。</p>
             </div>
             
             <div class="form-group">
-                    <label for="chart-type">图表类型</label>
+                    <label for="chart-type" data-i18n="chart.type">图表类型</label>
                     <select id="chart-type">
-                        <option value="histogram">直方图</option>
-                        <option value="bar">条形图</option>
-                        <option value="scatter">散点图</option>
-                        <option value="line">折线图</option>
+                        <option value="histogram" data-i18n="chart.histogram">直方图</option>
+                        <option value="bar" data-i18n="chart.bar">条形图</option>
+                        <option value="scatter" data-i18n="chart.scatter">散点图</option>
+                        <option value="line" data-i18n="chart.line">折线图</option>
                     </select>
                 </div>
             
             <div class="button-group">
-                <button id="analyze-data">分析数据</button>
-                <button id="reset-analysis" class="secondary">重置分析</button>
+                <button id="analyze-data" data-i18n="dataAnalysis.analyzeData">分析数据</button>
+                <button id="reset-analysis" class="secondary" data-i18n="dataAnalysis.resetAnalysis">重置分析</button>
             </div>
             
             <!-- 参数估计方法选择 -->
             <div id="parameter-estimation" class="form-group">
-                <h3>参数估计</h3>
+                <h3 data-i18n="parameterEstimation.title">参数估计</h3>
                 <div style="display: flex; align-items: center; gap: 10px;">
-                    <label for="estimation-method">估计方法:</label>
+                    <label for="estimation-method" data-i18n="parameterEstimation.method">估计方法:</label>
                     <select id="estimation-method">
-                        <option value="mom">矩估计法(MOM)</option>
-                        <option value="mle">最大似然估计法(MLE)</option>
+                        <option value="mom" data-i18n="parameterEstimation.mom">矩估计法(MOM)</option>
+                        <option value="mle" data-i18n="parameterEstimation.mle">最大似然估计法(MLE)</option>
                     </select>
-                    <button id="reestimate-btn" class="btn btn-secondary">重新估计参数</button>
+                    <button id="reestimate-btn" class="btn btn-secondary" data-i18n="parameterEstimation.reestimate">重新估计参数</button>
                 </div>
             </div>
             
             <!-- 参数估计结果 -->
             <div id="parameter-estimation-results" class="stats-container hidden">
-                <h3>参数估计结果</h3>
+                <h3 data-i18n="parameterEstimation.results">参数估计结果</h3>
                 <div id="estimation-results-grid" class="stats-grid"></div>
             </div>
             
@@ -784,7 +784,7 @@
                     console.log('应用程序初始化完成');
                 } catch (error) {
                     console.error('初始化应用时出错:', error);
-                    alert('应用程序初始化失败: ' + error.message);
+                    alert(i18n.t('alert.calculation.failed') + ': ' + error.message);
                 }
             },
             
@@ -802,7 +802,7 @@
             estimateParameters() {
                 try {
                     if (!this.generatedData) {
-                        alert('请先生成或上传数据');
+                        alert(i18n.t('error.no.data.generated'));
                         return;
                     }
                     
@@ -855,7 +855,7 @@
                         padding: 5px;
                         border-bottom: 2px solid var(--primary-color);
                     `;
-                    methodHeader.textContent = `使用${methodName}估计的参数`;
+                    methodHeader.textContent = i18n.t('estimated.parameters', { method: methodName });
                     
                     if (resultsGrid) {
                         resultsGrid.appendChild(methodHeader);
@@ -905,7 +905,7 @@
                     
                 } catch (error) {
                     console.error('参数估计时出错:', error);
-                    alert('参数估计失败: ' + error.message);
+                    alert(i18n.t('alert.calculation.failed') + ': ' + error.message);
                 }
             },
             
@@ -1163,7 +1163,7 @@
                     console.log('事件监听器设置完成');
                 } catch (error) {
                     console.error('设置事件监听器时出错:', error);
-                    alert('设置事件监听器失败: ' + error.message);
+                    alert(i18n.t('alert.calculation.failed') + ': ' + error.message);
                 }
             },
             
@@ -1268,7 +1268,7 @@
                     
                     // 验证样本大小
                     if (isNaN(sampleSize) || sampleSize < 100 || sampleSize > 10000) {
-                        alert('请输入有效的样本大小（100-10000）');
+                        alert(i18n.t('alert.invalid.sample.size'));
                         return;
                     }
                     
@@ -1357,7 +1357,7 @@
                             }, 500);
                         } catch (error) {
                             console.error('生成数据时出错:', error);
-                            alert('生成数据时出错: ' + error.message);
+                            alert(i18n.t('alert.failed.to.generate.data') + ': ' + error.message);
                             if (progressContainer) {
                                 progressContainer.classList.add('hidden');
                             }
@@ -1367,7 +1367,7 @@
                     });
                 } catch (error) {
                     console.error('调用生成数据函数时出错:', error);
-                    alert('生成数据失败: ' + error.message);
+                    alert(i18n.t('alert.failed.to.generate.data') + ': ' + error.message);
                 }
             },
             
@@ -1556,7 +1556,7 @@
                                 x: {
                                     title: {
                                         display: true,
-                                        text: '值'
+                                        text: i18n.t('chart.x.axis.value')
                                     },
                                     ticks: {
                                         autoSkip: true,
@@ -1571,7 +1571,7 @@
                                     beginAtZero: true,
                                     title: {
                                         display: true,
-                                        text: '频率'
+                                        text: i18n.t('chart.y.axis.frequency')
                                     },
                                     ticks: {
                                         callback: function(value) {
@@ -1604,7 +1604,7 @@
                     console.log('图表绘制完成');
                 } catch (error) {
                     console.error('绘制图表时出错:', error);
-                    alert('绘制图表失败: ' + error.message);
+                    alert(i18n.t('alert.failed.to.create.chart') + ': ' + error.message);
                 }
             },
             
@@ -1639,15 +1639,15 @@
                     
                     // 创建统计卡片
                     const stats = [
-                        { label: '均值', value: mean.toFixed(4) },
-                        { label: '中位数', value: median.toFixed(4) },
-                        { label: '标准差', value: std.toFixed(4) },
-                        { label: '方差', value: variance.toFixed(4) },
-                        { label: '最小值', value: min.toFixed(4) },
-                        { label: '最大值', value: max.toFixed(4) },
-                        { label: '第一四分位数', value: q1.toFixed(4) },
-                        { label: '第三四分位数', value: q3.toFixed(4) },
-                        { label: '四分位距', value: iqr.toFixed(4) }
+                        { label: i18n.t('stats.mean'), value: mean.toFixed(4) },
+                        { label: i18n.t('stats.median'), value: median.toFixed(4) },
+                        { label: i18n.t('stats.std.dev'), value: std.toFixed(4) },
+                        { label: i18n.t('stats.variance'), value: variance.toFixed(4) },
+                        { label: i18n.t('stats.min'), value: min.toFixed(4) },
+                        { label: i18n.t('stats.max'), value: max.toFixed(4) },
+                        { label: i18n.t('stats.q1'), value: q1.toFixed(4) },
+                        { label: i18n.t('stats.q3'), value: q3.toFixed(4) },
+                        { label: i18n.t('stats.iqr'), value: iqr.toFixed(4) }
                     ];
                     
                     // 添加统计卡片到容器
@@ -1799,7 +1799,7 @@
             calculateConfidenceFromSample() {
                 const sampleDataInput = document.getElementById('sample-data').value.trim();
                 if (!sampleDataInput) {
-                    alert('请输入样本数据');
+                    alert(i18n.t('alert.please.enter.sample.data'));
                     return null;
                 }
                 
@@ -1807,7 +1807,7 @@
                 const sampleData = sampleDataInput.split(',').map(val => parseFloat(val.trim())).filter(val => !isNaN(val));
                 
                 if (sampleData.length === 0) {
-                    alert('无法解析样本数据，请确保数据格式正确');
+                    alert(i18n.t('alert.could.not.parse.sample.data'));
                     return null;
                 }
                 
@@ -1828,7 +1828,7 @@
                     // Z检验：使用用户提供的总体标准差
                     const populationStd = parseFloat(document.getElementById('sample-population-std').value);
                     if (isNaN(populationStd) || populationStd <= 0) {
-                        alert('请输入有效的总体标准差');
+                        alert(i18n.t('alert.invalid.population.std'));
                         return null;
                     }
                     
@@ -1895,7 +1895,7 @@
                 // 验证参数
                 if (isNaN(confidenceLevel) || isNaN(sampleMean) || isNaN(stdValue) || isNaN(sampleSize) || 
                     stdValue <= 0 || sampleSize <= 0) {
-                    alert('请输入有效的参数');
+                    alert(i18n.t('alert.invalid.parameters'));
                     return null;
                 }
                 
@@ -1977,7 +1977,7 @@
                     // 验证参数
                     if (isNaN(mean) || isNaN(std) || isNaN(sampleSize) || isNaN(confidenceLevel) || 
                         std <= 0 || sampleSize <= 0) {
-                        alert('请输入有效的参数');
+                        alert(i18n.t('alert.invalid.parameters'));
                         return;
                     }
                     
@@ -2050,7 +2050,7 @@
                     this.generateInterpretation(result);
                 } catch (error) {
                     console.error('生成置信区间样本时出错:', error);
-                    alert('生成样本失败: ' + error.message);
+                    alert(i18n.t('alert.failed.to.generate.sample') + ': ' + error.message);
                 }
             },
             
@@ -2484,7 +2484,7 @@
                     const datasets = [
                         // 正态分布曲线
                         {
-                            label: '抽样分布',
+                            label: i18n.t('chart.sampling.distribution'),
                             data: normalData,
                             borderColor: 'rgba(74, 111, 165, 0.8)',
                             backgroundColor: 'rgba(74, 111, 165, 0.1)',
@@ -2494,7 +2494,7 @@
                         },
                         // 主置信区间填充
                         {
-                            label: `${result.confidenceLevel * 100}% ${result.testType === 'z-test' ? 'Z检验' : 'T检验'} 置信区间`,
+                            label: `${result.confidenceLevel * 100}% ${result.testType === 'z-test' ? i18n.t('z.test') : i18n.t('t.test')} ${i18n.t('stats.confidence.interval')}`,
                             data: fillData,
                             backgroundColor: 'rgba(74, 111, 165, 0.3)',
                             borderColor: 'transparent',
@@ -2504,7 +2504,7 @@
                         },
                         // 样本均值点
                         {
-                            label: '样本均值',
+                            label: i18n.t('chart.sample.mean'),
                             data: [null, null, null, normalData[Math.floor(pointCount/2)], null, null, null],
                             backgroundColor: 'rgba(249, 160, 63, 1)',
                             borderColor: 'rgba(249, 160, 63, 1)',
@@ -2516,38 +2516,38 @@
                     ];
                     
                     // 如果有T检验参考结果，添加到图表
-                    if (result.tLowerBound !== undefined) {
-                        datasets.splice(2, 0, { // 插入到样本均值点之前
-                            label: `${result.confidenceLevel * 100}% T检验参考置信区间`,
-                            data: tFillData,
-                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                            borderColor: 'transparent',
-                            fill: true,
-                            tension: 0.4,
-                            pointRadius: 0
-                        });
-                    }
+                            if (result.tLowerBound !== undefined) {
+                                datasets.splice(2, 0, { // 插入到样本均值点之前
+                                    label: `${result.confidenceLevel * 100}% ${i18n.t('t.test')} ${i18n.t('stats.t.test.reference')}`,
+                                    data: tFillData,
+                                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                                    borderColor: 'transparent',
+                                    fill: true,
+                                    tension: 0.4,
+                                    pointRadius: 0
+                                });
+                            }
                     
                     // 如果有总体均值，添加到图表
-                    if (result.populationMean !== undefined) {
-                        // 找到总体均值对应的索引
-                        let meanIndex = Math.floor(((result.populationMean - min) / (max - min)) * pointCount);
-                        meanIndex = Math.max(0, Math.min(pointCount - 1, meanIndex));
-                        
-                        const populationMeanData = new Array(pointCount).fill(null);
-                        populationMeanData[meanIndex] = normalData[meanIndex];
-                        
-                        datasets.push({
-                            label: '总体均值',
-                            data: populationMeanData,
-                            backgroundColor: 'rgba(76, 175, 80, 1)',
-                            borderColor: 'rgba(76, 175, 80, 1)',
-                            borderWidth: 2,
-                            pointRadius: 6,
-                            pointHoverRadius: 8,
-                            showLine: false
-                        });
-                    }
+                                    if (result.populationMean !== undefined) {
+                                        // 找到总体均值对应的索引
+                                        let meanIndex = Math.floor(((result.populationMean - min) / (max - min)) * pointCount);
+                                        meanIndex = Math.max(0, Math.min(pointCount - 1, meanIndex));
+                                        
+                                        const populationMeanData = new Array(pointCount).fill(null);
+                                        populationMeanData[meanIndex] = normalData[meanIndex];
+                                        
+                                        datasets.push({
+                                            label: i18n.t('chart.population.mean'),
+                                            data: populationMeanData,
+                                            backgroundColor: 'rgba(76, 175, 80, 1)',
+                                            borderColor: 'rgba(76, 175, 80, 1)',
+                                            borderWidth: 2,
+                                            pointRadius: 6,
+                                            pointHoverRadius: 8,
+                                            showLine: false
+                                        });
+                                    }
                     
                     // 准备注释配置
                     const annotations = {
@@ -2559,7 +2559,7 @@
                             borderWidth: 2,
                             borderDash: [5, 5],
                             label: {
-                                content: `主下限: ${result.lowerBound.toFixed(4)}`,
+                                content: `${i18n.t('chart.main.lower.bound')}: ${result.lowerBound.toFixed(4)}`,
                                 enabled: true,
                                 position: 'top'
                             }
@@ -2572,7 +2572,7 @@
                             borderWidth: 2,
                             borderDash: [5, 5],
                             label: {
-                                content: `主上限: ${result.upperBound.toFixed(4)}`,
+                                content: `${i18n.t('chart.main.upper.bound')}: ${result.upperBound.toFixed(4)}`,
                                 enabled: true,
                                 position: 'top'
                             }
@@ -2589,10 +2589,10 @@
                             borderWidth: 2,
                             borderDash: [3, 3],
                             label: {
-                                content: `T检验下限: ${result.tLowerBound.toFixed(4)}`,
-                                enabled: true,
-                                position: 'bottom'
-                            }
+                                    content: `${i18n.t('chart.t.test.lower.bound')}: ${result.tLowerBound.toFixed(4)}`,
+                                    enabled: true,
+                                    position: 'bottom'
+                                }
                         };
                         
                         annotations.tUpperBoundLine = {
@@ -2603,10 +2603,10 @@
                             borderWidth: 2,
                             borderDash: [3, 3],
                             label: {
-                                content: `T检验上限: ${result.tUpperBound.toFixed(4)}`,
-                                enabled: true,
-                                position: 'bottom'
-                            }
+                                    content: `${i18n.t('chart.t.test.upper.bound')}: ${result.tUpperBound.toFixed(4)}`,
+                                    enabled: true,
+                                    position: 'bottom'
+                                }
                         };
                     }
                     
@@ -2621,24 +2621,24 @@
                             responsive: true,
                             maintainAspectRatio: false,
                             scales: {
-                                x: {
-                                    title: {
-                                        display: true,
-                                        text: '值'
-                                    }
-                                },
-                                y: {
-                                    beginAtZero: true,
-                                    title: {
-                                        display: true,
-                                        text: '概率密度'
-                                    }
-                                }
-                            },
+                                        x: {
+                                            title: {
+                                                display: true,
+                                                text: i18n.t('chart.value')
+                                            }
+                                        },
+                                        y: {
+                                            beginAtZero: true,
+                                            title: {
+                                                display: true,
+                                                text: i18n.t('chart.probability.density')
+                                            }
+                                        }
+                                    },
                             plugins: {
                                 title: {
                                     display: true,
-                                    text: `${result.method} - ${result.confidenceLevel * 100}% 置信区间分析`,
+                                    text: `${result.method} - ${result.confidenceLevel * 100}% ${i18n.t('stats.confidence.interval')} Analysis`,
                                     font: {
                                         size: 16
                                     }
@@ -2647,15 +2647,15 @@
                                     callbacks: {
                                         label: function(context) {
                                             let label = context.dataset.label || '';
-                                            if (label.includes('置信区间')) {
-                                                if (label.includes('T检验参考')) {
+                                            if (label.includes(i18n.t('stats.confidence.interval'))) {
+                                                if (label.includes(i18n.t('stats.t.test.reference'))) {
                                                     return `${label}: [${result.tLowerBound.toFixed(4)}, ${result.tUpperBound.toFixed(4)}]`;
                                                 } else {
                                                     return `${label}: [${result.lowerBound.toFixed(4)}, ${result.upperBound.toFixed(4)}]`;
                                                 }
-                                            } else if (label === '样本均值') {
+                                            } else if (label === i18n.t('chart.sample.mean')) {
                                                 return `${label}: ${result.sampleMean.toFixed(4)}`;
-                                            } else if (label === '总体均值' && result.populationMean !== undefined) {
+                                            } else if (label === i18n.t('chart.population.mean') && result.populationMean !== undefined) {
                                                 return `${label}: ${result.populationMean.toFixed(4)}`;
                                             }
                                             return label;
@@ -2669,8 +2669,8 @@
                         }
                     });
                 } catch (error) {
-                    console.error('绘制置信区间图表时出错:', error);
-                    alert('绘制图表失败: ' + error.message);
+                    console.error('Error drawing confidence interval chart:', error);
+                    alert(i18n.t('alert.failed.to.create.chart') + ': ' + error.message);
                 }
             },
             
@@ -2689,7 +2689,7 @@
                     document.getElementById('sample-size-result').classList.add('hidden');
                     document.getElementById('sample-size-calculator').classList.add('hidden');
                 } catch (error) {
-                    console.error('清除置信区间结果时出错:', error);
+                    console.error('Error clearing confidence interval results:', error);
                 }
             },
             
@@ -2731,7 +2731,7 @@
                     if (inputMethod === 'distribution') {
                         // 使用分布生成的数据
                         if (!this.generatedData) {
-                            alert('请先在分布模拟标签页中生成数据');
+                            alert(i18n.t('error.no.data.generated'));
                             return;
                         }
                         
@@ -2742,7 +2742,7 @@
                         // 使用上传的文件数据
                         // 文件上传处理逻辑将在handleFileUpload中设置this.generatedData
                         if (!this.generatedData) {
-                            alert('请先上传CSV文件');
+                            alert(i18n.t('alert.please.select.file'));
                             return;
                         }
                         
@@ -2752,7 +2752,7 @@
                     } else if (inputMethod === 'ai') {
                         // 使用AI生成的数据
                         if (!this.generatedData) {
-                            alert('请先生成AI数据');
+                            alert(i18n.t('error.no.data.generated'));
                             return;
                         }
                         
@@ -2761,8 +2761,8 @@
                         this.estimateParameters();
                     }
                 } catch (error) {
-                    console.error('分析数据时出错:', error);
-                    alert('分析数据失败，请重试');
+                    console.error('Error analyzing data:', error);
+                    alert(i18n.t('alert.calculation.failed') + ': ' + error.message);
                 }
             },
             
@@ -2841,7 +2841,7 @@
                     data: {
                         labels: binLabels,
                         datasets: [{
-                            label: '频率',
+                            label: i18n.t('chart.frequency'),
                             data: frequencies,
                             backgroundColor: 'rgba(74, 111, 165, 0.7)',
                             borderColor: 'rgba(74, 111, 165, 1)',
@@ -2855,7 +2855,7 @@
                             x: {
                                 title: {
                                     display: true,
-                                    text: '值'
+                                    text: i18n.t('chart.value')
                                 },
                                 ticks: {
                                     autoSkip: true,
@@ -2882,7 +2882,7 @@
                         plugins: {
                             title: {
                                 display: true,
-                                text: `直方图分析 (样本大小: ${data.length})`,
+                                text: `${i18n.t('chart.histogram.analysis')} (${i18n.t('sample.size')}: ${data.length})`,
                                 font: {
                                     size: 16
                                 }
@@ -2904,7 +2904,7 @@
                     type: 'scatter',
                     data: {
                         datasets: [{
-                            label: '数据点',
+                            label: i18n.t('chart.data.points'),
                             data: scatterData,
                             backgroundColor: 'rgba(74, 111, 165, 0.7)',
                             pointRadius: 3,
@@ -2918,7 +2918,7 @@
                             x: {
                                 title: {
                                     display: true,
-                                    text: '索引'
+                                    text: i18n.t('chart.index')
                                 }
                             },
                             y: {
@@ -2931,7 +2931,7 @@
                         plugins: {
                             title: {
                                 display: true,
-                                text: `散点图分析 (显示前1000个点)`,
+                                text: `${i18n.t('chart.scatter.analysis')} (${i18n.t('showing.first.n.points', { n: 1000 })})`,
                                 font: {
                                     size: 16
                                 }
@@ -2952,7 +2952,7 @@
                     data: {
                         labels: indices,
                         datasets: [{
-                            label: '数据趋势',
+                            label: i18n.t('chart.data.trend'),
                             data: displayData,
                             backgroundColor: 'rgba(74, 111, 165, 0.1)',
                             borderColor: 'rgba(74, 111, 165, 1)',
@@ -2981,7 +2981,7 @@
                         plugins: {
                             title: {
                                 display: true,
-                                text: `折线图分析 (显示前1000个点)`,
+                                text: `${i18n.t('chart.line.analysis')} (${i18n.t('showing.first.n.points', { n: 1000 })})`,
                                 font: {
                                     size: 16
                                 }
@@ -3107,7 +3107,7 @@
                     }
                     
                     if (isNaN(count) || count < 100 || count > 10000) {
-                        alert('请输入有效的数据点数量（100-10000）');
+                        alert(i18n.t('alert.invalid.sample.size'));
                         return;
                     }
                     
@@ -3191,14 +3191,14 @@
                                 }, 500);
                             } catch (error) {
                                 console.error('模拟AI生成数据时出错:', error);
-                                alert('AI数据生成时出错: ' + error.message);
+                                alert(i18n.t('alert.failed.to.generate.data') + ': ' + error.message);
                                 cleanup();
                             }
                         }, 1500);
                     }
                 } catch (error) {
                     console.error('调用AI生成数据函数时出错:', error);
-                    alert('AI生成数据失败: ' + error.message);
+                    alert(i18n.t('alert.failed.to.generate.data') + ': ' + error.message);
                 }
             },
             
@@ -3282,7 +3282,7 @@
                     }
                 } catch (error) {
                     console.error('真实AI生成数据时出错:', error);
-                    alert(`真实AI生成数据失败: ${error.message}\n\n将回退到模拟AI生成...`);
+                    alert(i18n.t('alert.failed.to.generate.data') + `: ${error.message}\n\n将回退到模拟AI生成...`);
                     
                     // 回退到模拟AI
                     try {
@@ -3483,7 +3483,7 @@
                             this.calculateHypothesisTest();
                         } catch (error) {
                             console.error('计算假设检验时出错:', error);
-                            alert('计算错误: ' + error.message);
+                            alert(i18n.t('alert.calculation.failed') + ': ' + error.message);
                         }
                     });
                 }
@@ -3533,7 +3533,7 @@
                     
                     // 验证显著性水平
                     if (isNaN(significanceLevel) || significanceLevel <= 0 || significanceLevel >= 1) {
-                        throw new Error('显著性水平必须是0到1之间的数值');
+                        throw new Error('Significance level must be between 0 and 1');
                     }
                     
                     let results = null;
@@ -3569,7 +3569,7 @@
                     }
                 } catch (error) {
                     console.error('假设检验计算错误:', error);
-                    alert('计算错误: ' + error.message);
+                    alert(i18n.t('alert.calculation.failed') + ': ' + error.message);
                 }
             },
             
@@ -3580,7 +3580,7 @@
                 
                 // 验证数据和参数
                 if (!this.generatedData || this.generatedData.length === 0) {
-                    throw new Error('请先在概率分布模拟或数据分析中生成或导入数据');
+                    throw new Error(i18n.t('error.no.data.generated'));
                 }
                 
                 // 验证总体标准差
@@ -3638,8 +3638,8 @@
                     rejectNull,
                     testDirection,
                     resultMessage: rejectNull ? 
-                        `在显著性水平 α = ${significanceLevel} 下，拒绝原假设` : 
-                        `在显著性水平 α = ${significanceLevel} 下，不拒绝原假设`
+                        i18n.t('hypothesis.reject.null', { significanceLevel: significanceLevel }) : 
+                        i18n.t('hypothesis.fail.to.reject.null', { significanceLevel: significanceLevel })
                 };
             },
             
@@ -3681,8 +3681,8 @@
                     rejectNull,
                     testDirection,
                     resultMessage: rejectNull ? 
-                        `在显著性水平 α = ${significanceLevel} 下，拒绝原假设` : 
-                        `在显著性水平 α = ${significanceLevel} 下，不拒绝原假设`
+                        i18n.t('hypothesis.reject.null', { significanceLevel: significanceLevel }) : 
+                        i18n.t('hypothesis.fail.to.reject.null', { significanceLevel: significanceLevel })
                 };
             },
             
@@ -3712,7 +3712,7 @@
                     sample2 = sample2Text.split(',').map(x => parseFloat(x.trim())).filter(x => !isNaN(x));
                     
                     if (sample1.length === 0 || sample2.length === 0) {
-                        throw new Error('样本数据格式错误，请使用逗号分隔的数字');
+                        throw new Error(i18n.t('error.invalid.sample.format'));
                     }
                 }
                 
@@ -3750,8 +3750,8 @@
                     rejectNull,
                     testDirection,
                     resultMessage: rejectNull ? 
-                        `在显著性水平 α = ${significanceLevel} 下，拒绝原假设（两个总体均值相等）` : 
-                        `在显著性水平 α = ${significanceLevel} 下，不拒绝原假设（两个总体均值相等）`
+                        i18n.t('hypothesis.reject.null.two.sample', { significanceLevel: significanceLevel }) : 
+                        i18n.t('hypothesis.fail.to.reject.null.two.sample', { significanceLevel: significanceLevel })
                 };
             },
             
@@ -3760,7 +3760,7 @@
                 const sample2Text = document.getElementById('sample2-data').value.trim();
                 
                 if (!sample1Text || !sample2Text) {
-                    throw new Error('方差分析需要至少两个样本的数据');
+                    throw new Error(i18n.t('error.anova.needs.two.samples'));
                 }
                 
                 const sample1 = sample1Text.split(',').map(x => parseFloat(x.trim())).filter(x => !isNaN(x));
@@ -3816,8 +3816,8 @@
                     significanceLevel,
                     rejectNull,
                     resultMessage: rejectNull ? 
-                        `在显著性水平 α = ${significanceLevel} 下，拒绝原假设（各组均值相等）` : 
-                        `在显著性水平 α = ${significanceLevel} 下，不拒绝原假设（各组均值相等）`
+                        i18n.t('hypothesis.reject.null.anova', { significanceLevel: significanceLevel }) : 
+                        i18n.t('hypothesis.fail.to.reject.null.anova', { significanceLevel: significanceLevel })
                 };
             },
             
@@ -3839,25 +3839,25 @@
                 
                 // 根据检验类型显示不同的结果
                 if (results.testType === 'Z检验' || results.testType === 'T检验') {
-                    createStatCard('检验类型', results.testType);
-                    createStatCard('样本均值', results.sampleMean ? results.sampleMean.toFixed(4) : 'N/A');
-                    createStatCard('假设均值', results.hypothesizedMean);
-                    createStatCard('样本量', results.sampleSize);
+                    createStatCard(i18n.t('stats.testType'), results.testType);
+                    createStatCard(i18n.t('stats.sample.mean'), results.sampleMean ? results.sampleMean.toFixed(4) : 'N/A');
+                    createStatCard(i18n.t('stats.hypothesized.mean'), results.hypothesizedMean);
+                    createStatCard(i18n.t('stats.sample.size'), results.sampleSize);
                     
                     if (results.testType === 'Z检验') {
-                        createStatCard('Z统计量', results.zScore ? results.zScore.toFixed(4) : 'N/A');
+                        createStatCard(i18n.t('stats.zScore'), results.zScore ? results.zScore.toFixed(4) : 'N/A');
                     } else {
-                        createStatCard('T统计量', results.tScore ? results.tScore.toFixed(4) : 'N/A');
-                        createStatCard('自由度', results.degreesOfFreedom);
+                        createStatCard(i18n.t('stats.tScore'), results.tScore ? results.tScore.toFixed(4) : 'N/A');
+                        createStatCard(i18n.t('stats.degreesOfFreedom'), results.degreesOfFreedom);
                     }
                     
-                    createStatCard('P值', results.pValue ? results.pValue.toFixed(6) : 'N/A');
-                    createStatCard('显著性水平', results.significanceLevel);
+                    createStatCard(i18n.t('stats.pValue'), results.pValue ? results.pValue.toFixed(6) : 'N/A');
+                    createStatCard(i18n.t('hypothesis.significanceLevel'), results.significanceLevel);
                     
                     const resultCard = document.createElement('div');
                     resultCard.className = 'stat-card ' + (results.rejectNull ? 'highlight-reject' : 'highlight-accept');
                     resultCard.innerHTML = `
-                        <h4>检验结论</h4>
+                        <h4>${i18n.t('stats.testConclusion')}</h4>
                         <div class="stat-value">${results.resultMessage}</div>
                     `;
                     summaryContainer.appendChild(resultCard);
@@ -3865,47 +3865,47 @@
                     // 绘制图表
                     this.plotTestChart(results);
                 } else if (results.testType === '双样本T检验') {
-                    createStatCard('检验类型', results.testType);
-                    createStatCard('样本1均值', results.mean1 ? results.mean1.toFixed(4) : 'N/A');
-                    createStatCard('样本2均值', results.mean2 ? results.mean2.toFixed(4) : 'N/A');
-                    createStatCard('样本1标准差', results.std1 ? results.std1.toFixed(4) : 'N/A');
-                    createStatCard('样本2标准差', results.std2 ? results.std2.toFixed(4) : 'N/A');
-                    createStatCard('样本1量', results.n1);
-                    createStatCard('样本2量', results.n2);
-                    createStatCard('T统计量', results.tScore ? results.tScore.toFixed(4) : 'N/A');
-                    createStatCard('自由度', results.degreesOfFreedom);
-                    createStatCard('P值', results.pValue ? results.pValue.toFixed(6) : 'N/A');
-                    createStatCard('显著性水平', results.significanceLevel);
+                    createStatCard(i18n.t('stats.testType'), results.testType);
+                    createStatCard(i18n.t('stats.sample1.mean'), results.mean1 ? results.mean1.toFixed(4) : 'N/A');
+                    createStatCard(i18n.t('stats.sample2.mean'), results.mean2 ? results.mean2.toFixed(4) : 'N/A');
+                    createStatCard(i18n.t('stats.sample1.std'), results.std1 ? results.std1.toFixed(4) : 'N/A');
+                    createStatCard(i18n.t('stats.sample2.std'), results.std2 ? results.std2.toFixed(4) : 'N/A');
+                    createStatCard(i18n.t('stats.sample1.size'), results.n1);
+                    createStatCard(i18n.t('stats.sample2.size'), results.n2);
+                    createStatCard(i18n.t('stats.tScore'), results.tScore ? results.tScore.toFixed(4) : 'N/A');
+                    createStatCard(i18n.t('stats.degreesOfFreedom'), results.degreesOfFreedom);
+                    createStatCard(i18n.t('stats.pValue'), results.pValue ? results.pValue.toFixed(6) : 'N/A');
+                    createStatCard(i18n.t('hypothesis.significanceLevel'), results.significanceLevel);
                     
                     const resultCard = document.createElement('div');
                     resultCard.className = 'stat-card ' + (results.rejectNull ? 'highlight-reject' : 'highlight-accept');
                     resultCard.innerHTML = `
-                        <h4>检验结论</h4>
+                        <h4>${i18n.t('stats.testConclusion')}</h4>
                         <div class="stat-value">${results.resultMessage}</div>
                     `;
                     summaryContainer.appendChild(resultCard);
                 } else if (results.testType === '单因素方差分析') {
-                    createStatCard('检验类型', results.testType);
-                    createStatCard('组数', results.groups);
-                    createStatCard('总样本数', results.totalSamples);
-                    createStatCard('F统计量', results.fStatistic ? results.fStatistic.toFixed(4) : 'N/A');
-                    createStatCard('自由度', results.degreesOfFreedom);
-                    createStatCard('P值', results.pValue ? results.pValue.toFixed(6) : 'N/A');
-                    createStatCard('显著性水平', results.significanceLevel);
+                    createStatCard(i18n.t('stats.testType'), results.testType);
+                    createStatCard(i18n.t('stats.groups.count'), results.groups);
+                    createStatCard(i18n.t('stats.totalSamples'), results.totalSamples);
+                    createStatCard(i18n.t('stats.fStatistic'), results.fStatistic ? results.fStatistic.toFixed(4) : 'N/A');
+                    createStatCard(i18n.t('stats.degreesOfFreedom'), results.degreesOfFreedom);
+                    createStatCard(i18n.t('stats.pValue'), results.pValue ? results.pValue.toFixed(6) : 'N/A');
+                    createStatCard(i18n.t('hypothesis.significanceLevel'), results.significanceLevel);
                     
                     // 显示各组均值
                     if (results.groupMeans && Array.isArray(results.groupMeans)) {
                         results.groupMeans.forEach((mean, index) => {
-                            createStatCard(`组 ${index + 1} 均值`, mean ? mean.toFixed(4) : 'N/A');
+                            createStatCard(i18n.t('stats.groupMean', { group: index + 1 }), mean ? mean.toFixed(4) : 'N/A');
                         });
                     }
                     
-                    createStatCard('总均值', results.grandMean ? results.grandMean.toFixed(4) : 'N/A');
+                    createStatCard(i18n.t('stats.grandMean'), results.grandMean ? results.grandMean.toFixed(4) : 'N/A');
                     
                     const resultCard = document.createElement('div');
                     resultCard.className = 'stat-card ' + (results.rejectNull ? 'highlight-reject' : 'highlight-accept');
                     resultCard.innerHTML = `
-                        <h4>检验结论</h4>
+                        <h4>${i18n.t('stats.testConclusion')}</h4>
                         <div class="stat-value">${results.resultMessage}</div>
                     `;
                     summaryContainer.appendChild(resultCard);
