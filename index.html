@@ -6,6 +6,7 @@
     <title>统计分布模拟分析工具</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="dashscope_integration.js"></script>
+    <script src="i18n.js"></script>
     <style>
         :root {
             --primary-color: #4a6fa5;
@@ -41,6 +42,7 @@
             padding: 20px 0;
             text-align: center;
             box-shadow: var(--shadow);
+            position: relative;
         }
         
         .container {
@@ -326,17 +328,17 @@
 <body>
     <header>
         <div class="container">
-            <h1>统计分布模拟分析工具</h1>
-            <p class="subtitle">通过模拟不同概率分布，进行数据分析与可视化</p>
+            <h1 data-i18n="app.title">统计分布模拟分析工具</h1>
+            <p class="subtitle" data-i18n="app.subtitle">通过模拟不同概率分布，进行数据分析与可视化</p>
         </div>
     </header>
     
     <div class="container">
         <div class="tabs">
-            <button class="tab active" data-tab="distribution">概率分布模拟</button>
-            <button class="tab" data-tab="confidence">置信区间分析</button>
-            <button class="tab" data-tab="analysis">数据分析</button>
-            <button class="tab" data-tab="hypothesis">假设检验</button>
+            <button class="tab active" data-tab="distribution" data-i18n="tab.distribution">概率分布模拟</button>
+            <button class="tab" data-tab="confidence" data-i18n="tab.confidence">置信区间分析</button>
+            <button class="tab" data-tab="analysis" data-i18n="tab.dataAnalysis">数据分析</button>
+            <button class="tab" data-tab="hypothesis" data-i18n="tab.hypothesis">假设检验</button>
         </div>
         
         <div id="hypothesis" class="tab-content hidden">
@@ -435,15 +437,15 @@
         </div>
         
         <div id="distribution" class="tab-content">
-            <h2>概率分布模拟</h2>
+            <h2 data-i18n="tab.distribution">概率分布模拟</h2>
             
             <div class="form-group">
-                <label for="distribution-type">分布类型</label>
+                <label for="distribution-type" data-i18n="distribution.type">分布类型</label>
                 <select id="distribution-type">
-                    <option value="normal">正态分布</option>
-                    <option value="binomial">二项分布</option>
-                    <option value="poisson">泊松分布</option>
-                    <option value="uniform">均匀分布</option>
+                    <option value="normal" data-i18n="distribution.normal">正态分布</option>
+                    <option value="binomial" data-i18n="distribution.binomial">二项分布</option>
+                    <option value="poisson" data-i18n="distribution.poisson">泊松分布</option>
+                    <option value="uniform" data-i18n="distribution.uniform">均匀分布</option>
                     <option value="exponential">指数分布</option>
                 </select>
             </div>
@@ -452,11 +454,11 @@
             <div id="normal-params" class="param-group">
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="normal-mean">均值 (μ)</label>
+                        <label for="normal-mean" data-i18n="param.mean">均值 (μ)</label>
                         <input type="number" id="normal-mean" value="0" step="0.1" required>
                     </div>
                     <div class="form-group">
-                        <label for="normal-std">标准差 (σ)</label>
+                        <label for="normal-std" data-i18n="param.std">标准差 (σ)</label>
                         <input type="number" id="normal-std" value="1" step="0.1" min="0.1" required>
                     </div>
                 </div>
@@ -466,11 +468,11 @@
             <div id="binomial-params" class="param-group hidden">
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="binomial-n">试验次数 (n)</label>
+                        <label for="binomial-n" data-i18n="param.trials">试验次数 (n)</label>
                         <input type="number" id="binomial-n" value="10" step="1" min="1" required>
                     </div>
                     <div class="form-group">
-                        <label for="binomial-p">成功概率 (p)</label>
+                        <label for="binomial-p" data-i18n="param.probability">成功概率 (p)</label>
                         <input type="number" id="binomial-p" value="0.5" step="0.01" min="0" max="1" required>
                     </div>
                 </div>
@@ -480,7 +482,7 @@
             <div id="poisson-params" class="param-group hidden">
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="poisson-lambda">速率参数 (λ)</label>
+                        <label for="poisson-lambda" data-i18n="param.lambda">速率参数 (λ)</label>
                         <input type="number" id="poisson-lambda" value="5" step="0.1" min="0.01" required>
                     </div>
                 </div>
@@ -490,11 +492,11 @@
             <div id="uniform-params" class="param-group hidden">
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="uniform-min">最小值 (a)</label>
+                        <label for="uniform-min" data-i18n="param.min">最小值 (a)</label>
                         <input type="number" id="uniform-min" value="0" step="0.1" required>
                     </div>
                     <div class="form-group">
-                        <label for="uniform-max">最大值 (b)</label>
+                        <label for="uniform-max" data-i18n="param.max">最大值 (b)</label>
                         <input type="number" id="uniform-max" value="1" step="0.1" required>
                     </div>
                 </div>
@@ -511,13 +513,13 @@
             </div>
             
             <div class="form-group">
-                <label for="sample-size">样本大小</label>
+                <label for="sample-size" data-i18n="param.sampleSize">样本大小</label>
                 <input type="number" id="sample-size" value="1000" step="100" min="100" max="10000" required>
             </div>
             
             <div class="button-group">
-                <button id="generate-data">生成数据</button>
-                <button id="clear-data" class="secondary">清除数据</button>
+                <button id="generate-data" data-i18n="button.generateData">生成数据</button>
+                <button id="clear-data" class="secondary" data-i18n="button.clearData">清除数据</button>
             </div>
             
             <div id="distribution-chart-container" class="chart-container hidden">
@@ -528,39 +530,149 @@
         </div>
         
         <div id="confidence" class="tab-content hidden">
-            <h2>置信区间分析</h2>
+            <h2 data-i18n="tab.confidence">置信区间分析</h2>
             
-            <div class="form-group">
-                <label for="confidence-level">置信水平</label>
-                <select id="confidence-level">
-                    <option value="0.90">90%</option>
-                    <option value="0.95" selected>95%</option>
-                    <option value="0.99">99%</option>
-                </select>
+            <div class="card">
+                <h3 data-i18n="confidence.method">分析设置</h3>
+                
+                <div class="form-group">
+                    <label data-i18n="confidence.method">数据输入方式</label>
+                    <div>
+                        <label><input type="radio" name="confidence-data-method" value="sample" checked> 使用样本数据</label>
+                        <label><input type="radio" name="confidence-data-method" value="population" style="margin-left: 20px;"> 使用总体参数</label>
+                        <label><input type="radio" name="confidence-data-method" value="generate" style="margin-left: 20px;"> 生成随机样本</label>
+                    </div>
+                </div>
+                
+                <div id="sample-data-section">
+                    <div class="form-group">
+                        <label for="sample-data" data-i18n="confidence.sampleData">样本数据 (逗号分隔)</label>
+                        <textarea id="sample-data" rows="4" placeholder="例如: 1,2,3,4,5,6,7,8,9,10"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="confidence-test-type" data-i18n="confidence.method">检验方法</label>
+                        <select id="confidence-test-type">
+                            <option value="z-test" data-i18n="z.test">Z检验 (已知总体标准差)</option>
+                            <option value="t-test" data-i18n="t.test" selected>T检验 (未知总体标准差)</option>
+                        </select>
+                    </div>
+                    <div id="sample-std-section" class="form-group hidden">
+                        <label for="sample-population-std">总体标准差 (σ)</label>
+                        <input type="number" id="sample-population-std" value="1" step="0.1" min="0.1">
+                    </div>
+                </div>
+                
+                <div id="population-data-section" class="hidden">
+                    <div class="form-group">
+                        <label for="confidence-level" data-i18n="confidence.level">置信水平</label>
+                        <select id="confidence-level">
+                            <option value="0.90">90%</option>
+                            <option value="0.95" selected>95%</option>
+                            <option value="0.99">99%</option>
+                            <option value="0.999">99.9%</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="population-mean" data-i18n="confidence.sampleMean">样本均值 (x̄)</label>
+                        <input type="number" id="population-mean" value="0" step="0.1" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="population-std" data-i18n="confidence.populationStd">标准差</label>
+                        <select id="std-type">
+                            <option value="population" data-i18n="population.std">总体标准差 (σ)</option>
+                            <option value="sample" data-i18n="sample.std">样本标准差 (s)</option>
+                        </select>
+                        <input type="number" id="population-std" value="1" step="0.1" min="0.1" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="sample-size-confidence" data-i18n="confidence.sampleSize">样本大小</label>
+                        <input type="number" id="sample-size-confidence" value="30" step="1" min="1" required>
+                    </div>
+                </div>
+                
+                <div id="generate-data-section" class="hidden">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="generate-distribution" data-i18n="distribution.type">分布类型</label>
+                            <select id="generate-distribution">
+                                <option value="normal" data-i18n="distribution.normal">正态分布</option>
+                                <option value="uniform" data-i18n="distribution.uniform">均匀分布</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="generate-mean" data-i18n="param.mean">均值</label>
+                            <input type="number" id="generate-mean" value="0" step="0.1">
+                        </div>
+                        <div class="form-group">
+                            <label for="generate-std" data-i18n="param.std">标准差</label>
+                            <input type="number" id="generate-std" value="1" step="0.1" min="0.1">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="generate-sample-size" data-i18n="confidence.sampleSize">样本大小</label>
+                            <input type="number" id="generate-sample-size" value="30" step="1" min="1">
+                        </div>
+                        <div class="form-group">
+                            <label for="generate-confidence-level" data-i18n="confidence.level">置信水平</label>
+                            <select id="generate-confidence-level">
+                                <option value="0.90">90%</option>
+                                <option value="0.95" selected>95%</option>
+                                <option value="0.99">99%</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button id="generate-confidence-sample" class="secondary" data-i18n="confidence.generateSample">生成样本并分析</button>
+                </div>
+                
+                <div class="button-group">
+                    <button id="calculate-confidence" data-i18n="confidence.calculate">计算置信区间</button>
+                    <button id="calculate-sample-size" class="secondary" data-i18n="confidence.calculateSampleSize">计算所需样本量</button>
+                    <button id="clear-confidence-results" class="secondary" data-i18n="button.clear">清除结果</button>
+                </div>
             </div>
             
-            <div class="form-group">
-                <label for="population-mean">总体均值 (μ)</label>
-                <input type="number" id="population-mean" value="0" step="0.1" required>
+            <div id="sample-size-calculator" class="card hidden">
+                <h3 data-i18n="confidence.calculateSampleSize">样本量计算</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="margin-error" data-i18n="confidence.marginError">期望边际误差</label>
+                        <input type="number" id="margin-error" value="0.5" step="0.01" min="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label for="ss-confidence-level" data-i18n="confidence.level">置信水平</label>
+                        <select id="ss-confidence-level">
+                            <option value="0.90">90%</option>
+                            <option value="0.95" selected>95%</option>
+                            <option value="0.99">99%</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="ss-population-std">总体标准差 (σ)</label>
+                        <input type="number" id="ss-population-std" value="1" step="0.1" min="0.01">
+                    </div>
+                </div>
+                <button id="compute-sample-size" class="secondary">计算样本量</button>
+                <div id="sample-size-result" class="stats-container hidden"></div>
             </div>
             
-            <div class="form-group">
-                <label for="population-std">总体标准差 (σ)</label>
-                <input type="number" id="population-std" value="1" step="0.1" min="0.1" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="sample-size-confidence">样本大小</label>
-                <input type="number" id="sample-size-confidence" value="30" step="1" min="1" required>
-            </div>
-            
-            <div class="button-group">
-                <button id="calculate-confidence">计算置信区间</button>
-                <button id="generate-confidence-sample">生成样本</button>
-            </div>
-            
-            <div id="confidence-chart-container" class="chart-container hidden">
-                <canvas id="confidence-chart"></canvas>
+            <div id="confidence-results" class="hidden">
+                <h3>分析结果</h3>
+                <div class="stats-container">
+                    <div id="confidence-summary" class="stats-grid"></div>
+                </div>
+                
+                <div id="confidence-chart-container" class="chart-container">
+                    <canvas id="confidence-chart"></canvas>
+                </div>
+                
+                <div id="confidence-interpretation" class="card hidden">
+                    <h3>结果解释</h3>
+                    <div id="interpretation-text"></div>
+                </div>
             </div>
         </div>
         
@@ -667,6 +779,8 @@
                     this.setupParameterEstimationButton();
                     // 初始化假设检验功能
                     this.initHypothesisTesting();
+                    // 初始化置信区间分析功能
+                    this.initConfidenceIntervalEvents();
                     console.log('应用程序初始化完成');
                 } catch (error) {
                     console.error('初始化应用时出错:', error);
@@ -1589,133 +1703,809 @@
                 }
             },
             
-            // 计算置信区间
-            calculateConfidenceInterval() {
-                try {
-                    const confidenceLevel = parseFloat(document.getElementById('confidence-level').value);
-                    const populationMean = parseFloat(document.getElementById('population-mean').value);
-                    const populationStd = parseFloat(document.getElementById('population-std').value);
-                    const sampleSize = parseInt(document.getElementById('sample-size-confidence').value);
-                    
-                    // 验证参数
-                    if (isNaN(confidenceLevel) || isNaN(populationMean) || isNaN(populationStd) || isNaN(sampleSize) || 
-                        populationStd <= 0 || sampleSize <= 0) {
-                        alert('请输入有效的参数');
-                        return;
-                    }
-                    
-                    // 计算Z分数
-                    const zScore = this.getZScore(confidenceLevel);
-                    
-                    // 计算标准误
-                    const standardError = populationStd / Math.sqrt(sampleSize);
-                    
-                    // 计算置信区间
-                    const marginOfError = zScore * standardError;
-                    const lowerBound = populationMean - marginOfError;
-                    const upperBound = populationMean + marginOfError;
-                    
-                    // 绘制置信区间图表
-                    this.plotConfidenceIntervalChart(populationMean, lowerBound, upperBound, confidenceLevel);
-                } catch (error) {
-                    console.error('计算置信区间时出错:', error);
-                    alert('计算置信区间失败，请重试');
+            // 初始化置信区间分析事件监听器
+            initConfidenceIntervalEvents() {
+                // 数据输入方式切换
+                const dataMethods = document.querySelectorAll('input[name="confidence-data-method"]');
+                dataMethods.forEach(method => {
+                    method.addEventListener('change', () => this.toggleConfidenceDataSections());
+                });
+                
+                // 检验方法切换
+                document.getElementById('confidence-test-type').addEventListener('change', () => {
+                    const stdSection = document.getElementById('sample-std-section');
+                    const testType = document.getElementById('confidence-test-type').value;
+                    stdSection.classList.toggle('hidden', testType !== 'z-test');
+                });
+                
+                // 计算样本量按钮
+                document.getElementById('calculate-sample-size').addEventListener('click', () => {
+                    document.getElementById('sample-size-calculator').classList.toggle('hidden');
+                });
+                
+                // 执行样本量计算
+                document.getElementById('compute-sample-size').addEventListener('click', () => {
+                    this.calculateRequiredSampleSize();
+                });
+                
+                // 清除结果按钮
+                document.getElementById('clear-confidence-results').addEventListener('click', () => {
+                    this.clearConfidenceResults();
+                });
+                
+                // 计算置信区间按钮
+                document.getElementById('calculate-confidence').addEventListener('click', () => {
+                    this.calculateConfidenceInterval();
+                });
+                
+                // 生成样本并分析按钮
+                document.getElementById('generate-confidence-sample').addEventListener('click', () => {
+                    this.generateConfidenceSample();
+                });
+                
+                // 初始化显示正确的部分
+                this.toggleConfidenceDataSections();
+            },
+            
+            // 切换置信区间数据输入部分
+            toggleConfidenceDataSections() {
+                const method = document.querySelector('input[name="confidence-data-method"]:checked').value;
+                
+                document.getElementById('sample-data-section').classList.toggle('hidden', method !== 'sample');
+                document.getElementById('population-data-section').classList.toggle('hidden', method !== 'population');
+                document.getElementById('generate-data-section').classList.toggle('hidden', method !== 'generate');
+                
+                // 如果是Z检验，显示总体标准差输入框
+                const testType = document.getElementById('confidence-test-type')?.value;
+                const stdSection = document.getElementById('sample-std-section');
+                if (stdSection && testType) {
+                    stdSection.classList.toggle('hidden', testType !== 'z-test');
                 }
             },
             
-            // 生成置信区间样本
+            // 计算置信区间
+            calculateConfidenceInterval() {
+                try {
+                    const method = document.querySelector('input[name="confidence-data-method"]:checked').value;
+                    let result;
+                    
+                    switch (method) {
+                        case 'sample':
+                            result = this.calculateConfidenceFromSample();
+                            break;
+                        case 'population':
+                            result = this.calculateConfidenceFromParameters();
+                            break;
+                        default:
+                            alert(i18n.t('alert.please.select.valid.data.method'));
+                            return;
+                    }
+                    
+                    if (result) {
+                        // 保存结果到全局对象，供语言切换时使用
+                        window.confidenceIntervalModule.lastResult = result;
+                        
+                        this.displayConfidenceResults(result);
+                        this.plotConfidenceIntervalChart(result);
+                        this.generateInterpretation(result);
+                    }
+                } catch (error) {
+                    console.error('计算置信区间时出错:', error);
+                    alert(i18n.t('alert.calculation.failed') + ': ' + error.message);
+                }
+            },
+            
+            // 从样本数据计算置信区间
+            calculateConfidenceFromSample() {
+                const sampleDataInput = document.getElementById('sample-data').value.trim();
+                if (!sampleDataInput) {
+                    alert('请输入样本数据');
+                    return null;
+                }
+                
+                // 解析样本数据
+                const sampleData = sampleDataInput.split(',').map(val => parseFloat(val.trim())).filter(val => !isNaN(val));
+                
+                if (sampleData.length === 0) {
+                    alert('无法解析样本数据，请确保数据格式正确');
+                    return null;
+                }
+                
+                const testType = document.getElementById('confidence-test-type').value;
+                const sampleSize = sampleData.length;
+                
+                // 计算样本统计量
+                const sampleMean = sampleData.reduce((sum, val) => sum + val, 0) / sampleSize;
+                const sampleVariance = sampleData.reduce((sum, val) => sum + Math.pow(val - sampleMean, 2), 0) / (sampleSize - 1);
+                const sampleStd = Math.sqrt(sampleVariance);
+                
+                // 获取置信水平
+                const confidenceLevel = parseFloat(document.getElementById('confidence-level')?.value || 0.95);
+                
+                let criticalValue, standardError, marginOfError, lowerBound, upperBound, method;
+                
+                if (testType === 'z-test') {
+                    // Z检验：使用用户提供的总体标准差
+                    const populationStd = parseFloat(document.getElementById('sample-population-std').value);
+                    if (isNaN(populationStd) || populationStd <= 0) {
+                        alert('请输入有效的总体标准差');
+                        return null;
+                    }
+                    
+                    criticalValue = this.getZScore(confidenceLevel);
+                    standardError = populationStd / Math.sqrt(sampleSize);
+                    marginOfError = criticalValue * standardError;
+                    lowerBound = sampleMean - marginOfError;
+                    upperBound = sampleMean + marginOfError;
+                    method = `Z检验 (使用总体标准差 σ=${populationStd})`;
+                    
+                    return {
+                        method,
+                        confidenceLevel,
+                        sampleSize,
+                        sampleMean,
+                        sampleStd,
+                        populationStd,
+                        criticalValue,
+                        standardError,
+                        marginOfError,
+                        lowerBound,
+                        upperBound,
+                        confidenceInterval: `[${lowerBound.toFixed(4)}, ${upperBound.toFixed(4)}]`,
+                        testType: 'z-test',
+                        data: sampleData
+                    };
+                } else {
+                    // T检验：使用样本标准差
+                    const degreesOfFreedom = sampleSize - 1;
+                    criticalValue = this.getTScore(confidenceLevel, degreesOfFreedom);
+                    standardError = sampleStd / Math.sqrt(sampleSize);
+                    marginOfError = criticalValue * standardError;
+                    lowerBound = sampleMean - marginOfError;
+                    upperBound = sampleMean + marginOfError;
+                    method = `T检验 (自由度=${degreesOfFreedom})`;
+                    
+                    return {
+                        method,
+                        confidenceLevel,
+                        sampleSize,
+                        sampleMean,
+                        sampleStd,
+                        degreesOfFreedom: degreesOfFreedom,
+                        criticalValue,
+                        standardError,
+                        marginOfError,
+                        lowerBound,
+                        upperBound,
+                        confidenceInterval: `[${lowerBound.toFixed(4)}, ${upperBound.toFixed(4)}]`,
+                        testType: 't-test',
+                        data: sampleData
+                    };
+                }
+            },
+            
+            // 从参数计算置信区间
+            calculateConfidenceFromParameters() {
+                const confidenceLevel = parseFloat(document.getElementById('confidence-level').value);
+                const sampleMean = parseFloat(document.getElementById('population-mean').value);
+                const stdValue = parseFloat(document.getElementById('population-std').value);
+                const sampleSize = parseInt(document.getElementById('sample-size-confidence').value);
+                const stdType = document.getElementById('std-type').value;
+                
+                // 验证参数
+                if (isNaN(confidenceLevel) || isNaN(sampleMean) || isNaN(stdValue) || isNaN(sampleSize) || 
+                    stdValue <= 0 || sampleSize <= 0) {
+                    alert('请输入有效的参数');
+                    return null;
+                }
+                
+                let criticalValue, standardError, marginOfError, lowerBound, upperBound, method;
+                
+                // 选择检验方法：
+                // 1. 如果已知总体标准差，使用Z检验
+                // 2. 如果未知总体标准差但样本量足够大(n≥30)，可以使用Z检验近似
+                // 3. 如果未知总体标准差且样本量小(n<30)，使用T检验
+                if (stdType === 'population') {
+                    // Z检验：已知总体标准差
+                    criticalValue = this.getZScore(confidenceLevel);
+                    standardError = stdValue / Math.sqrt(sampleSize);
+                    marginOfError = criticalValue * standardError;
+                    lowerBound = sampleMean - marginOfError;
+                    upperBound = sampleMean + marginOfError;
+                    method = `Z检验 (已知总体标准差 σ=${stdValue})`;
+                } else if (sampleSize >= 30) {
+                    // Z检验：未知总体标准差但大样本
+                    criticalValue = this.getZScore(confidenceLevel);
+                    standardError = stdValue / Math.sqrt(sampleSize);
+                    marginOfError = criticalValue * standardError;
+                    lowerBound = sampleMean - marginOfError;
+                    upperBound = sampleMean + marginOfError;
+                    method = `Z检验 (大样本近似，s=${stdValue})`;
+                } else {
+                    // T检验：小样本且未知总体标准差
+                    const degreesOfFreedom = sampleSize - 1;
+                    criticalValue = this.getTScore(confidenceLevel, degreesOfFreedom);
+                    standardError = stdValue / Math.sqrt(sampleSize);
+                    marginOfError = criticalValue * standardError;
+                    lowerBound = sampleMean - marginOfError;
+                    upperBound = sampleMean + marginOfError;
+                    method = `T检验 (小样本，自由度=${degreesOfFreedom})`;
+                }
+                
+                // 准备返回对象，确保与其他函数的格式一致
+                const result = {
+                    method,
+                    confidenceLevel,
+                    sampleSize,
+                    sampleMean,
+                    criticalValue,
+                    standardError,
+                    marginOfError,
+                    lowerBound,
+                    upperBound,
+                    confidenceInterval: `[${lowerBound.toFixed(4)}, ${upperBound.toFixed(4)}]`,
+                    testType: stdType === 'population' || sampleSize >= 30 ? 'z-test' : 't-test',
+                    stdType: stdType
+                };
+                
+                // 根据标准差类型添加相应的字段
+                if (stdType === 'population') {
+                    result.populationStd = stdValue;
+                    result.degreesOfFreedom = null; // Z检验不涉及自由度
+                } else {
+                    result.sampleStd = stdValue;
+                    // 只有在使用T检验时才添加自由度
+                    if (sampleSize < 30) {
+                        result.degreesOfFreedom = sampleSize - 1;
+                    } else {
+                        result.degreesOfFreedom = null;
+                    }
+                }
+                
+                return result;
+            },
+            
+            // 生成置信区间样本并分析
             generateConfidenceSample() {
                 try {
-                    const confidenceLevel = parseFloat(document.getElementById('confidence-level').value);
-                    const populationMean = parseFloat(document.getElementById('population-mean').value);
-                    const populationStd = parseFloat(document.getElementById('population-std').value);
-                    const sampleSize = parseInt(document.getElementById('sample-size-confidence').value);
+                    const distributionType = document.getElementById('generate-distribution').value;
+                    const mean = parseFloat(document.getElementById('generate-mean').value);
+                    const std = parseFloat(document.getElementById('generate-std').value);
+                    const sampleSize = parseInt(document.getElementById('generate-sample-size').value);
+                    const confidenceLevel = parseFloat(document.getElementById('generate-confidence-level').value);
                     
                     // 验证参数
-                    if (isNaN(confidenceLevel) || isNaN(populationMean) || isNaN(populationStd) || isNaN(sampleSize) || 
-                        populationStd <= 0 || sampleSize <= 0) {
+                    if (isNaN(mean) || isNaN(std) || isNaN(sampleSize) || isNaN(confidenceLevel) || 
+                        std <= 0 || sampleSize <= 0) {
                         alert('请输入有效的参数');
                         return;
                     }
                     
                     // 生成样本数据
-                    const sampleData = [];
-                    for (let i = 0; i < sampleSize; i++) {
-                        // 生成正态分布随机数
-                        let u1, u2;
-                        do {
-                            u1 = Math.random();
-                            u2 = Math.random();
-                        } while (u1 <= Number.EPSILON);
+                    const sampleData = this.generateConfidenceSampleData(distributionType, sampleSize, mean, std);
+                    
+                    // 计算样本统计量
+                    const sampleMean = sampleData.reduce((sum, val) => sum + val, 0) / sampleSize;
+                    const sampleVariance = sampleData.reduce((sum, val) => sum + Math.pow(val - sampleMean, 2), 0) / (sampleSize - 1);
+                    const sampleStd = Math.sqrt(sampleVariance);
+                    
+                    // 选择检验方法
+                    // 在模拟场景中，我们实际上知道总体标准差，因此应该使用Z检验
+                    // 但同时计算T检验结果作为参考，因为在实际数据分析中通常未知总体标准差
+                    
+                    // Z检验（使用已知的总体标准差）
+                    const zCriticalValue = this.getZScore(confidenceLevel);
+                    const zStandardError = std / Math.sqrt(sampleSize); // 使用已知的总体标准差
+                    const zMarginOfError = zCriticalValue * zStandardError;
+                    const zLowerBound = sampleMean - zMarginOfError;
+                    const zUpperBound = sampleMean + zMarginOfError;
+                    const zMethod = `Z检验 (已知总体标准差 σ=${std})`;
+                    
+                    // T检验（使用样本标准差）
+                    const degreesOfFreedom = sampleSize - 1;
+                    const tCriticalValue = this.getTScore(confidenceLevel, degreesOfFreedom);
+                    const tStandardError = sampleStd / Math.sqrt(sampleSize);
+                    const tMarginOfError = tCriticalValue * tStandardError;
+                    const tLowerBound = sampleMean - tMarginOfError;
+                    const tUpperBound = sampleMean + tMarginOfError;
+                    const tMethod = `T检验 (自由度=${degreesOfFreedom})`;
+                    
+                    // 由于我们在模拟中知道总体标准差，默认使用Z检验结果
+                    let criticalValue = zCriticalValue;
+                    let standardError = zStandardError;
+                    let marginOfError = zMarginOfError;
+                    let lowerBound = zLowerBound;
+                    let upperBound = zUpperBound;
+                    let method = zMethod;
+                    
+                    const result = {
+                        method,
+                        confidenceLevel,
+                        sampleSize,
+                        sampleMean,
+                        sampleStd,
+                        populationMean: mean,
+                        populationStd: std,
+                        criticalValue,
+                        standardError,
+                        marginOfError,
+                        lowerBound,
+                        upperBound,
+                        testType: 'z-test', // 因为我们使用已知总体标准差，应该是z-test
+                        degreesOfFreedom: degreesOfFreedom,
+                        data: sampleData,
+                        distributionType,
                         
-                        const z0 = Math.sqrt(-2.0 * Math.log(u1)) * Math.cos(2 * Math.PI * u2);
-                        sampleData.push(populationMean + z0 * populationStd);
+                        // 额外提供T检验结果作为参考
+                        tMethod,
+                        tCriticalValue,
+                        tStandardError,
+                        tMarginOfError,
+                        tLowerBound,
+                        tUpperBound
+                    };
+                    
+                    this.displayConfidenceResults(result);
+                    this.plotConfidenceIntervalChart(result);
+                    this.generateInterpretation(result);
+                } catch (error) {
+                    console.error('生成置信区间样本时出错:', error);
+                    alert('生成样本失败: ' + error.message);
+                }
+            },
+            
+            // 计算所需样本量
+            calculateRequiredSampleSize() {
+                try {
+                    const marginError = parseFloat(document.getElementById('margin-error').value);
+                    const confidenceLevel = parseFloat(document.getElementById('ss-confidence-level').value);
+                    const populationStd = parseFloat(document.getElementById('ss-population-std').value);
+                    
+                    // 验证参数
+                    if (isNaN(marginError) || isNaN(confidenceLevel) || isNaN(populationStd) || 
+                        marginError <= 0 || populationStd <= 0 || confidenceLevel <= 0 || confidenceLevel >= 1) {
+                        alert(i18n.t('alert.please.enter.valid.parameters'));
+                        return;
                     }
                     
-                    // 计算样本均值
-                    const sampleMean = sampleData.reduce((sum, val) => sum + val, 0) / sampleData.length;
+                    // 保存参数到全局对象，供语言切换时使用
+                    window.confidenceIntervalModule.lastSampleSizeParams = { marginError, confidenceLevel, populationStd };
                     
                     // 计算Z分数
                     const zScore = this.getZScore(confidenceLevel);
                     
-                    // 计算标准误（使用总体标准差）
-                    const standardError = populationStd / Math.sqrt(sampleSize);
+                    // 计算样本量
+                    const sampleSize = Math.ceil(Math.pow((zScore * populationStd) / marginError, 2));
                     
-                    // 计算置信区间
-                    const marginOfError = zScore * standardError;
-                    const lowerBound = sampleMean - marginOfError;
-                    const upperBound = sampleMean + marginOfError;
+                    // 显示结果
+                    const resultContainer = document.getElementById('sample-size-result');
+                    resultContainer.innerHTML = '';
+                    resultContainer.classList.remove('hidden');
                     
-                    // 绘制置信区间图表
-                    this.plotConfidenceIntervalChart(sampleMean, lowerBound, upperBound, confidenceLevel, populationMean);
+                    const stats = [
+                        { label: i18n.t('stats.required.sample.size'), value: sampleSize },
+                        { label: i18n.t('confidence.level'), value: `${confidenceLevel * 100}%` },
+                        { label: i18n.t('stats.margin.error'), value: marginError.toFixed(4) },
+                        { label: i18n.t('stats.population.std'), value: populationStd.toFixed(4) },
+                        { label: i18n.t('stats.z.score'), value: zScore.toFixed(4) }
+                    ];
+                    
+                    stats.forEach(stat => {
+                        const card = document.createElement('div');
+                        card.className = 'stat-card';
+                        
+                        const label = document.createElement('div');
+                        label.className = 'stat-label';
+                        label.textContent = stat.label;
+                        
+                        const value = document.createElement('div');
+                        value.className = 'stat-value';
+                        value.textContent = stat.value;
+                        
+                        card.appendChild(label);
+                        card.appendChild(value);
+                        resultContainer.appendChild(card);
+                    });
+                    
+                    // 添加解释文本
+                    const explanation = document.createElement('div');
+                    explanation.className = 'help-text';
+                    explanation.style.marginTop = '15px';
+                    explanation.innerHTML = `
+                        <p><strong>${i18n.t('sample.size.explanation.title')}：</strong>${i18n.t('sample.size.explanation', {
+                            confidenceLevel: confidenceLevel * 100,
+                            marginError: marginError,
+                            populationStd: populationStd,
+                            sampleSize: sampleSize
+                        })}</p>
+                    `;
+                    resultContainer.appendChild(explanation);
                 } catch (error) {
-                    console.error('生成置信区间样本时出错:', error);
-                    alert('生成样本失败，请重试');
+                    console.error('计算样本量时出错:', error);
+                    alert(i18n.t('alert.calculation.failed') + ': ' + error.message);
                 }
             },
             
-            // 获取Z分数
+            // 重新计算样本量（语言切换时使用）
+            recalculateSampleSize() {
+                // 如果有保存的样本量参数，则重新计算
+                if (window.confidenceIntervalModule.lastSampleSizeParams) {
+                    const { marginError, confidenceLevel, populationStd } = window.confidenceIntervalModule.lastSampleSizeParams;
+                    
+                    // 恢复表单值
+                    document.getElementById('margin-error').value = marginError;
+                    document.getElementById('ss-confidence-level').value = confidenceLevel;
+                    document.getElementById('ss-population-std').value = populationStd;
+                    
+                    // 重新计算
+                    this.calculateRequiredSampleSize();
+                }
+            },
+            
+            // 显示置信区间分析结果
+            displayConfidenceResults(result) {
+                const resultsContainer = document.getElementById('confidence-results');
+                const summaryContainer = document.getElementById('confidence-summary');
+                
+                // 清空并显示容器
+                summaryContainer.innerHTML = '';
+                resultsContainer.classList.remove('hidden');
+                
+                // 准备统计数据
+                const stats = [
+                    { label: i18n.t('stats.analysis.method'), value: result.method },
+                    { label: i18n.t('confidence.level'), value: `${result.confidenceLevel * 100}%` },
+                    { label: i18n.t('stats.sample.size'), value: result.sampleSize },
+                    { label: i18n.t('stats.sample.mean'), value: result.sampleMean.toFixed(4) }
+                ];
+                
+                // 添加标准差信息
+                if (result.populationStd) {
+                    stats.push({ label: i18n.t('stats.population.std'), value: result.populationStd.toFixed(4) });
+                }
+                if (result.sampleStd) {
+                    stats.push({ label: i18n.t('stats.sample.std'), value: result.sampleStd.toFixed(4) });
+                }
+                
+                // 添加自由度（T检验时）
+                if (result.degreesOfFreedom !== null) {
+                    stats.push({ label: i18n.t('stats.degrees.freedom'), value: result.degreesOfFreedom });
+                }
+                
+                // 添加临界值、标准误和边际误差
+                stats.push(
+                    { label: i18n.t('stats.critical.value'), value: result.criticalValue.toFixed(4) },
+                    { label: i18n.t('stats.standard.error'), value: result.standardError.toFixed(4) },
+                    { label: i18n.t('stats.margin.error'), value: result.marginOfError.toFixed(4) },
+                    { label: i18n.t('stats.confidence.interval.lower'), value: result.lowerBound.toFixed(4) },
+                    { label: i18n.t('stats.confidence.interval.upper'), value: result.upperBound.toFixed(4) },
+                    { label: i18n.t('stats.confidence.interval'), value: `[${result.lowerBound.toFixed(4)}, ${result.upperBound.toFixed(4)}]` }
+                );
+                
+                // 创建统计卡片
+                stats.forEach(stat => {
+                    const card = document.createElement('div');
+                    card.className = 'stat-card';
+                    
+                    const label = document.createElement('div');
+                    label.className = 'stat-label';
+                    label.textContent = stat.label;
+                    
+                    const value = document.createElement('div');
+                    value.className = 'stat-value';
+                    value.textContent = stat.value;
+                    
+                    card.appendChild(label);
+                    card.appendChild(value);
+                    summaryContainer.appendChild(card);
+                });
+                
+                // 如果有总体均值，添加额外信息
+                if (result.populationMean !== undefined) {
+                    const containsTrueMean = result.lowerBound <= result.populationMean && result.populationMean <= result.upperBound;
+                    const meanInfoCard = document.createElement('div');
+                    meanInfoCard.className = `stat-card ${containsTrueMean ? 'highlight-accept' : 'highlight-reject'}`;
+                    meanInfoCard.innerHTML = `
+                        <div class="stat-label">${i18n.t('stats.contains.true.mean')}</div>
+                        <div class="stat-value">${containsTrueMean ? i18n.t('stats.contains.true.mean.yes') : i18n.t('stats.contains.true.mean.no')}</div>
+                        <div class="help-text">${i18n.t('stats.actual.population.mean')}: ${result.populationMean.toFixed(4)}</div>
+                    `;
+                    summaryContainer.appendChild(meanInfoCard);
+                }
+                
+                // 如果存在T检验参考结果，则显示它们
+                if (result.tMethod) {
+                    const tSection = document.createElement('div');
+                    tSection.className = 't-test-reference';
+                    tSection.style.marginTop = '20px';
+                    tSection.style.padding = '15px';
+                    tSection.style.backgroundColor = 'rgba(0, 123, 255, 0.1)';
+                    tSection.style.borderLeft = '4px solid #007bff';
+                    
+                    let tHtml = `<h4>${i18n.t('stats.t.test.reference')}</h4><div class="stats-grid">`;
+                    const tStats = [
+                        { label: i18n.t('stats.method'), value: result.tMethod },
+                        { label: i18n.t('stats.t.critical.value'), value: result.tCriticalValue.toFixed(4) },
+                        { label: i18n.t('stats.t.standard.error'), value: result.tStandardError.toFixed(4) },
+                        { label: i18n.t('stats.t.margin.error'), value: result.tMarginOfError.toFixed(4) },
+                        { label: i18n.t('stats.t.confidence.interval'), value: `[${result.tLowerBound.toFixed(4)}, ${result.tUpperBound.toFixed(4)}]` }
+                    ];
+                    
+                    tStats.forEach(stat => {
+                        tHtml += `
+                            <div class="stat-card">
+                                <div class="stat-label">${stat.label}:</div>
+                                <div class="stat-value">${stat.value}</div>
+                            </div>
+                        `;
+                    });
+                    
+                    tHtml += '</div>';
+                    tSection.innerHTML = tHtml;
+                    summaryContainer.appendChild(tSection);
+                }
+                
+                // 显示图表容器
+                const chartContainer = document.getElementById('confidence-chart-container');
+                chartContainer.classList.remove('hidden');
+                
+                // 显示解释容器
+                const interpretationContainer = document.getElementById('confidence-interpretation');
+                interpretationContainer.classList.remove('hidden');
+            },
+            
+            // 生成结果解释
+            generateInterpretation(result) {
+                const interpretationContainer = document.getElementById('confidence-interpretation');
+                const interpretationText = document.getElementById('interpretation-text');
+                
+                // 计算效应量（Cohen's d）
+                let effectSize = null;
+                if (result.sampleMean && result.sampleStd) {
+                    effectSize = Math.abs(result.sampleMean) / result.sampleStd;
+                }
+                
+                let text = `
+                    <p><strong>${i18n.t('confidence.interpretation.statistical')}：</strong></p>
+                    <p>${i18n.t('confidence.interpretation.confident', {
+                        confidenceLevel: result.confidenceLevel * 100,
+                        lowerBound: result.lowerBound.toFixed(4),
+                        upperBound: result.upperBound.toFixed(4)
+                    })}</p>
+                    
+                    <p><strong>${i18n.t('confidence.interpretation.methodological')}：</strong></p>
+                    <ul>
+                        <li>${i18n.t('confidence.interpretation.using', { method: result.method })}</li>
+                        <li>${i18n.t('confidence.interpretation.based.on', { sampleSize: result.sampleSize })}</li>
+                        <li>${i18n.t('confidence.interpretation.margin.error', { marginError: result.marginOfError.toFixed(4) })}</li>
+                    </ul>
+                `;
+                
+                // 添加效应量解释（如果可用）
+                if (effectSize !== null) {
+                    let effectSizeKey = 'stats.effect.size.smallest';
+                    if (effectSize < 0.2) effectSizeKey = 'stats.effect.size.smallest';
+                    else if (effectSize < 0.5) effectSizeKey = 'stats.effect.size.small';
+                    else if (effectSize < 0.8) effectSizeKey = 'stats.effect.size.medium';
+                    else effectSizeKey = 'stats.effect.size.large';
+                    
+                    text += `
+                        <p><strong>${i18n.t('stats.effect.size.analysis')}：</strong></p>
+                        <p>${i18n.t('stats.cohens.d')} = ${effectSize.toFixed(4)}（${i18n.t(effectSizeKey)}）</p>
+                    `;
+                }
+                
+                // 添加实际应用建议
+                text += `
+                    <p><strong>${i18n.t('stats.practical.application')}：</strong></p>
+                    <ul>
+                        <li>${i18n.t('stats.increase.sample.size')}</li>
+                        <li>${i18n.t('stats.current.margin.error')} ${result.marginOfError.toFixed(4)}，${i18n.t('stats.adjust.confidence.level')}</li>
+                        <li>${result.confidenceLevel === 0.95 ? i18n.t('stats.common.confidence.level') : 
+                          i18n.t('stats.selected.confidence.level', { confidenceLevel: result.confidenceLevel * 100 })}
+                        </li>
+                    </ul>
+                `;
+                
+                interpretationText.innerHTML = text;
+                interpretationContainer.classList.remove('hidden');
+            },
+            
+            // 获取Z分数（支持更精确的计算）
             getZScore(confidenceLevel) {
-                // 常见置信水平的Z分数
-                const zScores = {
-                    0.90: 1.645,
-                    0.95: 1.96,
-                    0.99: 2.576
+                // 使用逆正态分布近似 - 对于置信区间，我们需要使用1-α/2
+                const alpha = 1 - confidenceLevel;
+                const zScore = Math.sqrt(2) * this.erfInv(1 - alpha / 2);
+                return Math.abs(zScore);
+            },
+            
+            // 获取T分数（更准确的计算）
+            getTScore(confidenceLevel, degreesOfFreedom) {
+                // 确保自由度为正整数
+                degreesOfFreedom = Math.max(1, Math.floor(degreesOfFreedom));
+                
+                // 对于大自由度，使用Z分数近似
+                if (degreesOfFreedom >= 100) {
+                    return this.getZScore(confidenceLevel);
+                }
+                
+                // 完善的T分布临界值表（双侧检验）
+                const tTable = {
+                    0.90: {
+                        1: 6.314, 2: 2.920, 3: 2.353, 4: 2.132, 5: 2.015, 6: 1.943, 7: 1.895, 8: 1.860, 9: 1.833,
+                        10: 1.812, 15: 1.753, 20: 1.725, 30: 1.697, 40: 1.684, 50: 1.676, 60: 1.671, 70: 1.667, 80: 1.664,
+                        90: 1.662, 99: 1.660
+                    },
+                    0.95: {
+                        1: 12.706, 2: 4.303, 3: 3.182, 4: 2.776, 5: 2.571, 6: 2.447, 7: 2.365, 8: 2.306, 9: 2.262,
+                        10: 2.228, 15: 2.131, 20: 2.086, 30: 2.042, 40: 2.021, 50: 2.009, 60: 2.000, 70: 1.994, 80: 1.990,
+                        90: 1.987, 99: 1.984
+                    },
+                    0.99: {
+                        1: 63.657, 2: 9.925, 3: 5.841, 4: 4.604, 5: 4.032, 6: 3.707, 7: 3.499, 8: 3.355, 9: 3.250,
+                        10: 3.169, 15: 2.947, 20: 2.845, 30: 2.750, 40: 2.704, 50: 2.678, 60: 2.660, 70: 2.648, 80: 2.639,
+                        90: 2.632, 99: 2.626
+                    }
                 };
                 
-                return zScores[confidenceLevel] || 1.96; // 默认使用95%的Z分数
+                // 查找最接近的自由度
+                if (tTable[confidenceLevel] && tTable[confidenceLevel][degreesOfFreedom]) {
+                    return tTable[confidenceLevel][degreesOfFreedom];
+                }
+                
+                // 线性插值或使用Z分数近似
+                const cl = confidenceLevel;
+                const df = degreesOfFreedom;
+                
+                // 如果自由度大于表中最大值，使用Z分数近似
+                if (df > 99) {
+                    return this.getZScore(confidenceLevel);
+                }
+                
+                // 查找最接近的自由度值
+                let lowerDf = Math.floor(df);
+                let upperDf = Math.ceil(df);
+                
+                if (lowerDf < 1) lowerDf = 1;
+                if (upperDf > 99) upperDf = 99;
+                
+                if (tTable[cl] && tTable[cl][lowerDf] && tTable[cl][upperDf]) {
+                    // 线性插值
+                    const lowerT = tTable[cl][lowerDf];
+                    const upperT = tTable[cl][upperDf];
+                    return lowerT + (upperT - lowerT) * (df - lowerDf);
+                }
+                
+                // 默认使用Z分数
+                return this.getZScore(confidenceLevel);
+            },
+            
+            // 误差函数逆函数（用于更精确的Z分数计算）
+            erfInv(x) {
+                // 近似实现误差函数的逆函数
+                const a = 0.14001228868666e0;
+                const b = 0.44814322062058e0;
+                const c = 0.96061387286725e-1;
+                const d = 0.49267329197003e-1;
+                const e = 0.37540566805404e-1;
+                
+                const y = Math.log(1 - x * x);
+                const z = Math.sqrt(-y - 1.26551223 + y * (a + y * (b + y * (c + y * (d + y * e)))));
+                
+                return x >= 0 ? z : -z;
             },
             
             // 绘制置信区间图表
-            plotConfidenceIntervalChart(mean, lowerBound, upperBound, confidenceLevel, populationMean = null) {
+            plotConfidenceIntervalChart(result) {
                 try {
                     const ctx = document.getElementById('confidence-chart').getContext('2d');
                     const chartContainer = document.getElementById('confidence-chart-container');
                     
                     // 显示图表容器
-                    if (chartContainer) {
-                        chartContainer.classList.remove('hidden');
-                    }
+                    chartContainer.classList.remove('hidden');
                     
                     // 销毁旧图表
                     if (this.currentChart) {
                         this.currentChart.destroy();
                     }
                     
-                    // 创建图表数据
+                    // 计算图表数据范围 - 确保能容纳所有显示的置信区间
+                    const center = result.sampleMean;
+                    
+                    // 找出最小的下界和最大的上界（包括T检验结果）
+                    let minLower = result.lowerBound;
+                    let maxUpper = result.upperBound;
+                    
+                    if (result.tLowerBound !== undefined) {
+                        minLower = Math.min(minLower, result.tLowerBound);
+                        maxUpper = Math.max(maxUpper, result.tUpperBound);
+                    }
+                    
+                    // 计算合适的范围
+                    const rangeFromBounds = (maxUpper - minLower) * 1.5;
+                    const rangeFromCenter = Math.max(result.marginOfError * 3, 0.01);
+                    const range = Math.max(rangeFromBounds, rangeFromCenter);
+                    
+                    const min = center - range;
+                    const max = center + range;
+                    
+                    // 创建基础数据点
+                    const pointCount = 100;
+                    const xLabels = [];
+                    const normalData = [];
+                    
+                    for (let i = 0; i < pointCount; i++) {
+                        const x = min + (max - min) * i / (pointCount - 1);
+                        xLabels.push(x.toFixed(2));
+                        
+                        // 计算正态分布概率密度
+                        const std = result.testType === 'z-test' ? 
+                            (result.populationStd ? result.populationStd / Math.sqrt(result.sampleSize) : result.sampleStd / Math.sqrt(result.sampleSize)) : 
+                            (result.sampleStd / Math.sqrt(result.sampleSize));
+                        
+                        const normalValue = (1 / (std * Math.sqrt(2 * Math.PI))) * 
+                            Math.exp(-0.5 * Math.pow((x - center) / std, 2));
+                        normalData.push(normalValue);
+                    }
+                    
+                    // 创建置信区间区域数据
+                    const ciRange = [];
+                    const fillData = [];
+                    const tFillData = []; // T检验的填充数据
+                    
+                    for (let i = 0; i < pointCount; i++) {
+                        const x = min + (max - min) * i / (pointCount - 1);
+                        ciRange.push(x);
+                        
+                        // 主置信区间（Z检验）内的值设为对应正态分布值，否则设为0
+                        const std = result.testType === 'z-test' ? 
+                            (result.populationStd ? result.populationStd / Math.sqrt(result.sampleSize) : result.sampleStd / Math.sqrt(result.sampleSize)) : 
+                            (result.sampleStd / Math.sqrt(result.sampleSize));
+                        const normalValue = (1 / (std * Math.sqrt(2 * Math.PI))) * 
+                            Math.exp(-0.5 * Math.pow((x - center) / std, 2));
+                        
+                        if (x >= result.lowerBound && x <= result.upperBound) {
+                            fillData.push(normalValue);
+                        } else {
+                            fillData.push(0);
+                        }
+                        
+                        // T检验置信区间填充（如果有T检验结果）
+                        if (result.tLowerBound !== undefined) {
+                            if (x >= result.tLowerBound && x <= result.tUpperBound) {
+                                tFillData.push(normalValue);
+                            } else {
+                                tFillData.push(0);
+                            }
+                        }
+                    }
+                    
+                    // 创建图表数据集
                     const datasets = [
+                        // 正态分布曲线
                         {
-                            label: '置信区间',
-                            data: [lowerBound, upperBound],
-                            backgroundColor: 'rgba(74, 111, 165, 0.3)',
-                            borderColor: 'rgba(74, 111, 165, 1)',
+                            label: '抽样分布',
+                            data: normalData,
+                            borderColor: 'rgba(74, 111, 165, 0.8)',
+                            backgroundColor: 'rgba(74, 111, 165, 0.1)',
                             borderWidth: 2,
-                            fill: true,
-                            tension: 0.1
+                            fill: false,
+                            tension: 0.4
                         },
+                        // 主置信区间填充
                         {
-                            label: '均值',
-                            data: [mean],
+                            label: `${result.confidenceLevel * 100}% ${result.testType === 'z-test' ? 'Z检验' : 'T检验'} 置信区间`,
+                            data: fillData,
+                            backgroundColor: 'rgba(74, 111, 165, 0.3)',
+                            borderColor: 'transparent',
+                            fill: true,
+                            tension: 0.4,
+                            pointRadius: 0
+                        },
+                        // 样本均值点
+                        {
+                            label: '样本均值',
+                            data: [null, null, null, normalData[Math.floor(pointCount/2)], null, null, null],
                             backgroundColor: 'rgba(249, 160, 63, 1)',
                             borderColor: 'rgba(249, 160, 63, 1)',
                             borderWidth: 2,
@@ -1725,11 +2515,31 @@
                         }
                     ];
                     
-                    // 如果提供了总体均值，添加到图表中
-                    if (populationMean !== null) {
+                    // 如果有T检验参考结果，添加到图表
+                    if (result.tLowerBound !== undefined) {
+                        datasets.splice(2, 0, { // 插入到样本均值点之前
+                            label: `${result.confidenceLevel * 100}% T检验参考置信区间`,
+                            data: tFillData,
+                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                            borderColor: 'transparent',
+                            fill: true,
+                            tension: 0.4,
+                            pointRadius: 0
+                        });
+                    }
+                    
+                    // 如果有总体均值，添加到图表
+                    if (result.populationMean !== undefined) {
+                        // 找到总体均值对应的索引
+                        let meanIndex = Math.floor(((result.populationMean - min) / (max - min)) * pointCount);
+                        meanIndex = Math.max(0, Math.min(pointCount - 1, meanIndex));
+                        
+                        const populationMeanData = new Array(pointCount).fill(null);
+                        populationMeanData[meanIndex] = normalData[meanIndex];
+                        
                         datasets.push({
                             label: '总体均值',
-                            data: [populationMean],
+                            data: populationMeanData,
                             backgroundColor: 'rgba(76, 175, 80, 1)',
                             borderColor: 'rgba(76, 175, 80, 1)',
                             borderWidth: 2,
@@ -1739,11 +2549,72 @@
                         });
                     }
                     
+                    // 准备注释配置
+                    const annotations = {
+                        lowerBoundLine: {
+                            type: 'line',
+                            xMin: result.lowerBound,
+                            xMax: result.lowerBound,
+                            borderColor: 'rgba(244, 67, 54, 0.8)',
+                            borderWidth: 2,
+                            borderDash: [5, 5],
+                            label: {
+                                content: `主下限: ${result.lowerBound.toFixed(4)}`,
+                                enabled: true,
+                                position: 'top'
+                            }
+                        },
+                        upperBoundLine: {
+                            type: 'line',
+                            xMin: result.upperBound,
+                            xMax: result.upperBound,
+                            borderColor: 'rgba(244, 67, 54, 0.8)',
+                            borderWidth: 2,
+                            borderDash: [5, 5],
+                            label: {
+                                content: `主上限: ${result.upperBound.toFixed(4)}`,
+                                enabled: true,
+                                position: 'top'
+                            }
+                        }
+                    };
+                    
+                    // 如果有T检验参考结果，添加T检验的边界线
+                    if (result.tLowerBound !== undefined) {
+                        annotations.tLowerBoundLine = {
+                            type: 'line',
+                            xMin: result.tLowerBound,
+                            xMax: result.tLowerBound,
+                            borderColor: 'rgba(255, 99, 132, 0.6)',
+                            borderWidth: 2,
+                            borderDash: [3, 3],
+                            label: {
+                                content: `T检验下限: ${result.tLowerBound.toFixed(4)}`,
+                                enabled: true,
+                                position: 'bottom'
+                            }
+                        };
+                        
+                        annotations.tUpperBoundLine = {
+                            type: 'line',
+                            xMin: result.tUpperBound,
+                            xMax: result.tUpperBound,
+                            borderColor: 'rgba(255, 99, 132, 0.6)',
+                            borderWidth: 2,
+                            borderDash: [3, 3],
+                            label: {
+                                content: `T检验上限: ${result.tUpperBound.toFixed(4)}`,
+                                enabled: true,
+                                position: 'bottom'
+                            }
+                        };
+                    }
+                    
                     // 创建图表
                     this.currentChart = new Chart(ctx, {
                         type: 'line',
                         data: {
-                            labels: [''],
+                            labels: xLabels,
                             datasets: datasets
                         },
                         options: {
@@ -1751,19 +2622,23 @@
                             maintainAspectRatio: false,
                             scales: {
                                 x: {
-                                    display: false
-                                },
-                                y: {
                                     title: {
                                         display: true,
                                         text: '值'
+                                    }
+                                },
+                                y: {
+                                    beginAtZero: true,
+                                    title: {
+                                        display: true,
+                                        text: '概率密度'
                                     }
                                 }
                             },
                             plugins: {
                                 title: {
                                     display: true,
-                                    text: `${confidenceLevel * 100}% 置信区间`,
+                                    text: `${result.method} - ${result.confidenceLevel * 100}% 置信区间分析`,
                                     font: {
                                         size: 16
                                     }
@@ -1771,23 +2646,81 @@
                                 tooltip: {
                                     callbacks: {
                                         label: function(context) {
-                                            const label = context.dataset.label || '';
-                                            const value = context.raw;
-                                            
-                                            if (label === '置信区间') {
-                                                return `${label}: [${lowerBound.toFixed(4)}, ${upperBound.toFixed(4)}]`;
+                                            let label = context.dataset.label || '';
+                                            if (label.includes('置信区间')) {
+                                                if (label.includes('T检验参考')) {
+                                                    return `${label}: [${result.tLowerBound.toFixed(4)}, ${result.tUpperBound.toFixed(4)}]`;
+                                                } else {
+                                                    return `${label}: [${result.lowerBound.toFixed(4)}, ${result.upperBound.toFixed(4)}]`;
+                                                }
+                                            } else if (label === '样本均值') {
+                                                return `${label}: ${result.sampleMean.toFixed(4)}`;
+                                            } else if (label === '总体均值' && result.populationMean !== undefined) {
+                                                return `${label}: ${result.populationMean.toFixed(4)}`;
                                             }
-                                            return `${label}: ${value.toFixed(4)}`;
+                                            return label;
                                         }
                                     }
+                                },
+                                annotation: {
+                                    annotations: annotations
                                 }
                             }
                         }
                     });
                 } catch (error) {
                     console.error('绘制置信区间图表时出错:', error);
-                    alert('绘制图表失败，请重试');
+                    alert('绘制图表失败: ' + error.message);
                 }
+            },
+            
+            // 清除置信区间结果
+            clearConfidenceResults() {
+                try {
+                    // 销毁图表
+                    if (this.currentChart) {
+                        this.currentChart.destroy();
+                        this.currentChart = null;
+                    }
+                    
+                    // 隐藏结果容器
+                    document.getElementById('confidence-results').classList.add('hidden');
+                    document.getElementById('confidence-interpretation').classList.add('hidden');
+                    document.getElementById('sample-size-result').classList.add('hidden');
+                    document.getElementById('sample-size-calculator').classList.add('hidden');
+                } catch (error) {
+                    console.error('清除置信区间结果时出错:', error);
+                }
+            },
+            
+            // 生成置信区间样本数据（仅用于置信区间分析）
+            generateConfidenceSampleData(distributionType, sampleSize, mean, std) {
+                const data = [];
+                
+                for (let i = 0; i < sampleSize; i++) {
+                    if (distributionType === 'normal') {
+                        // 使用Box-Muller变换生成正态分布随机数
+                        let u1, u2;
+                        do {
+                            u1 = Math.random();
+                            u2 = Math.random();
+                        } while (u1 <= Number.EPSILON);
+                        
+                        const z0 = Math.sqrt(-2.0 * Math.log(u1)) * Math.cos(2 * Math.PI * u2);
+                        data.push(mean + z0 * std);
+                    } else if (distributionType === 'uniform') {
+                        // 生成均匀分布随机数
+                        // 均匀分布的标准差 = (max - min) / Math.sqrt(12)
+                        // 因此 max = mean + std * Math.sqrt(12) / 2
+                        //     min = mean - std * Math.sqrt(12) / 2
+                        const range = std * Math.sqrt(12);
+                        const min = mean - range / 2;
+                        const max = mean + range / 2;
+                        data.push(min + Math.random() * (max - min));
+                    }
+                }
+                
+                return data;
             },
             
             // 数据分析
@@ -3413,7 +4346,24 @@
         // 初始化应用
         document.addEventListener('DOMContentLoaded', () => {
             console.log('DOM加载完成，开始初始化应用');
+            
+            // 创建全局的置信区间模块对象
+            window.confidenceIntervalModule = {
+                lastResult: null,
+                lastSampleSizeParams: null
+            };
+            
             StatApp.init();
+            
+            // 在StatApp初始化后，尝试将必要的方法暴露给全局对象
+            if (window.StatApp && window.StatApp.app) {
+                const app = window.StatApp.app;
+                if (app.displayConfidenceResults && app.generateInterpretation) {
+                    window.confidenceIntervalModule.displayConfidenceResults = app.displayConfidenceResults.bind(app);
+                    window.confidenceIntervalModule.generateInterpretation = app.generateInterpretation.bind(app);
+                    window.confidenceIntervalModule.recalculateSampleSize = app.recalculateSampleSize ? app.recalculateSampleSize.bind(app) : function() {};
+                }
+            }
         });
     </script>
 </body>
